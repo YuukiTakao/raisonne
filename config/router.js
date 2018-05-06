@@ -4,34 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'yuuki',
-  password : '0217yuki',
-  database : 'raisonne'
-});
-
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
-    return;
-  }
-
-  console.log('connected as id ' + connection.threadId);
-});
-
-connection.query('SELECT * FROM USER', function (error, results, fields) {
-	console.log(results);
-});
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('../app/api/index');
+var usersRouter = require('../app/api/users/users');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../app/views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
