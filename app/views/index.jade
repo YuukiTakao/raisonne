@@ -2,4 +2,24 @@ extends layout
 
 block content
   h1= title
+  
   p Welcome to #{title}
+  
+  section#top
+  .content.top
+  table
+    tr 
+      th
+        |No.
+      th
+        |task name
+    tr
+      td
+        |1
+      td
+        |#{task.a1}
+    tr
+      td
+        |2
+      td
+        |#{task.a2}

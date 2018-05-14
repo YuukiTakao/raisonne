@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+table {
+  border-collapse: collapse;
+  border: solid 2px orange;
+}
+
+table th, table td {
+  border: dashed 1px orange;
+}
