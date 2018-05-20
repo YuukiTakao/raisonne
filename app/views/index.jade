@@ -13,13 +13,12 @@ block content
         |No.
       th
         |task name
-    tr
-      td
-        |1
-      td
-        |#{task.a1}
-    tr
-      td
-        |2
-      td
-        |#{task.a2}
+      - var i = 0
+      each obj, index in task
+        each val, key in obj
+          - i++
+          tr
+            td
+              |#{i}
+            td
+              |#{val}
