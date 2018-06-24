@@ -1,5 +1,5 @@
+var Dao = require ('../repositories/Dao.js');
 
-
-var model = "Task Data Of Dummy";
+var model = Dao
 
 module.exports = model;
