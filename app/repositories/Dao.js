@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('raisonne','root','0217Yuki!',{dialect:'mysql'});
-const TestTable = sequelize.define('test_table', {
+const UserTable = sequelize.define('user', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true
@@ -13,6 +13,6 @@ const TestTable = sequelize.define('test_table', {
   timestamps: false
 });
 
-TestTable.findAll().then(data => {
+UserTable.findAll().then(data => {
   console.log(data);
 });
