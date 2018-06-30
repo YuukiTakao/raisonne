@@ -1,4 +1,5 @@
-var sequelize = require ('../repositories/Dao.js');
+const Sequelize = require('sequelize');
+const sequelize = require ('../repositories/Dao.js');
 
 
 const UserTable = sequelize.define('user', {
