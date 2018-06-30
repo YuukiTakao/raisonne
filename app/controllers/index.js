@@ -1,5 +1,3 @@
-var model = require('../models/tasks.js');
-
-var allTaskList = model;
-
-module.exports = allTaskList;
+var users = require('../models/tasks.js');
+console.log(users);
+module.exports = users;

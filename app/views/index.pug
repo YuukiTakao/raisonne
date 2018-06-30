@@ -10,15 +10,19 @@ block content
   table
     tr 
       th
-        |No.
+        |Task Name
       th
-        |task name
+        |Status
+      th
+        |Start
+      th
+        |Deadline
+      th
+        |ID
+      tr
       - var i = 0
       each obj, index in task
         each val, key in obj
           - i++
-          tr
-            td
-              |#{i}
-            td
-              |#{val}
+          td
+            |#{val}
