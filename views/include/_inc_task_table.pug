@@ -1,0 +1,41 @@
+table
+    thead
+      tr 
+        th
+          |Completed
+        th
+          |Task Name
+        th
+          |List Id
+        th
+          |Start Date
+        th
+          |Close Date
+        th
+          |Completon Date
+        th
+          |Created At
+        th
+          |Updated At
+    tbody  
+      - var i = 0
+      each task in tasks
+        tr
+          - i++
+          td
+            label
+              input(type='checkbox')
+          td
+            |#{task.title}
+          td
+            |#{task.list_id}
+          td
+            |#{task.start_date}
+          td
+            |#{task.close_date}
+          td
+            |#{task.completion_date}
+          td
+            |#{task.created_at}
+          td
+            |#{task.updated_at}
