@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var tasks = sequelize.define('tasks', {
     title: DataTypes.STRING,
-    completed: DataTypes.BOOLEAN,
+    completed: DataTypes.INTEGER,
     list_id: DataTypes.INTEGER,
     start_date: DataTypes.DATE,
     close_date: DataTypes.DATE,
