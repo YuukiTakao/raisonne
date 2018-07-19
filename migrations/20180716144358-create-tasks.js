@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       completed: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BOOLEAN
       },
       list_id: {
         type: Sequelize.INTEGER

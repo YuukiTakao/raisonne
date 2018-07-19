@@ -14,7 +14,7 @@ table
       each task in tasks
         tr
           - i++
-          td: label: input(type='checkbox' onChange="postByFetch('http://192.168.33.10:3000/update', " + task.id +")")
+          td: label: input(id='check' type='checkbox' onChange="postByFetch('http://192.168.33.10:3000/update', "+task.id +",this.checked)")
           td #{task.title}
           td #{task.list_id}
           td #{task.start_date}

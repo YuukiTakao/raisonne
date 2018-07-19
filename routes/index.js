@@ -14,16 +14,13 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.post('/update', function(req, res, next) {
-  console.log(req.body.id);
   models.tasks
-    .update({completed: 1},{ where: { id: req.body.id}}) // {更新内容},{更新対象}
+    .update({completed: Boolean(req.body.task_status)},{ where: { id: req.body.id}}) // {更新内容},{更新対象}
     .then(result=> {
-      console.log(result);
       const param = {result:"Hello World !"};
       res.header('Content-Type', 'application/json; charset=utf-8')
       res.send(param);
   })
 });
-
 
 module.exports = router;
