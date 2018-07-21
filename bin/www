@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../config/router');
+var app = require('../app');
 var debug = require('debug')('raisonne:server');
 var http = require('http');
 
