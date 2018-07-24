@@ -16,19 +16,18 @@ router.get('/', function(req, res, next) {
 
     // tasksモデルの全データを取得
     models.tasks.findAll().then(task=> {  
-      var taskArray = JSON.parse(JSON.stringify(task, null, 2));
+      var taskObjArray = JSON.parse(JSON.stringify(task, null, 2));
 
       const responseJson = {
         title: 'raisonne',
-        tasks: taskArray
+        tasks: taskObjArray,
       };
-
       // ViewにModelのデータを渡す
       res.render('index', responseJson);
   });
 });
-
-router.post('/update', function(req, res, next) {
+
+router.post('/task/update', function(req, res, next) {
   
   models.tasks
     .update({completed: Boolean(req.body.task_status)},{ where: { id: req.body.id}}) // {更新内容},{更新対象}

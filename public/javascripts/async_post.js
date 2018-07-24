@@ -1,8 +1,8 @@
-function postByFetch(url, target_id, isCompleted) {
+function postByFetch(request, target_id, isCompleted) {
+
+  const url = location.protocol+"//"+location.host + request;
   
-  console.log('{id: ' + target_id + '}');
   const obj = {id: target_id, task_status: isCompleted};
-  console.log(isCompleted);
   const method = "POST";
   const body = JSON.stringify(obj);
   const headers = {
