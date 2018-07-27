@@ -1,0 +1,7 @@
+FROM node:10.6
+
+EXPOSE 80
+WORKDIR /root/src
+ADD ./package.json .
+RUN npm install && apt-get update && apt-get install -y vim
+CMD npm start
