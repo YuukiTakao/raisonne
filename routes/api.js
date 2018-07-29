@@ -18,4 +18,20 @@ router.post('/task/regist', (req, res, next) => {
   })
 });
 
+/* タスクの削除 */
+router.get('/task/delete/:id', (req, res, next) => {
+  const targetId = req.params.id;
+  const delTask = models.tasks.destroy({
+    where:{
+      id: targetId
+    }
+  })
+  delTask.then((ret) => {
+    res.send('delete succeeded');
+  })
+  delTask.error((e) => {
+    res.send(e.message);
+  })
+})
+
 module.exports = router;
