@@ -2,7 +2,7 @@ var fs = require('fs');
 var bunyan = require('bunyan');
 
 var log = bunyan.createLogger({name: 'myapp'});
-var appLogDirectory = __dirname + '/../application_log';
+var appLogDirectory = __dirname + '/../log/application_log';
 fs.existsSync(appLogDirectory) || fs.mkdirSync(appLogDirectory);
 
 module.exports = bunyan.createLogger({

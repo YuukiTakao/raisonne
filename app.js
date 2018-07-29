@@ -11,7 +11,7 @@ var app = express();
 
 //LOGGING
 var FileStreamRotator = require('file-stream-rotator');
-var logDirectory = __dirname + '/access_log';
+var logDirectory = __dirname + '/log/access_log';
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 var accessLogStream = FileStreamRotator.getStream({
