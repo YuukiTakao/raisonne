@@ -13,7 +13,7 @@ const models = require('../models');
 
 /* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
 router.get('/', function(req, res, next) {
-
+    logger.info('route.get START');   // ここでログ出してます！！！
     // tasksモデルの全データを取得
     models.tasks.findAll().then(task=> {  
       var taskObjArray = JSON.parse(JSON.stringify(task, null, 2));
@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
       };
       // ViewにModelのデータを渡す
       res.render('index', responseJson);
+      logger.info('route.get END');  // ここでログ出してます！！！
   });
 });
 

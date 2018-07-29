@@ -7,13 +7,9 @@ var fs = require('fs');
 
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/users.js');
-
 var app = express();
 
-
-/**
- * LOGGING
- */
+//LOGGING
 var FileStreamRotator = require('file-stream-rotator');
 var logDirectory = __dirname + '/access_log';
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
@@ -32,7 +28,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
