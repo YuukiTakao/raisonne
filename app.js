@@ -7,6 +7,10 @@ var fs = require('fs');
 
 var indexRouter = require('./routes/index.js');
 var usersRouter = require('./routes/users.js');
+
+const apiRouter = require('./routes/api.js');
+
+
 var app = express();
 
 //LOGGING
@@ -35,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
