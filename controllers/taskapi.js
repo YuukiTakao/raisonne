@@ -30,6 +30,12 @@ task.update = (req, res, next) => {
   updateTask.then(result=> {
     res.json({isSucceeded: true});
   })
+  updateTask.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  })
 };
 
 /* タスクの削除 */
