@@ -10,10 +10,13 @@ task.regist = (req, res, next) => {
     close_date: param.close_date,
   })
   insertTask.then((ret) => {
-    res.send('insert succeeded');
+    res.json({isSucceeded: true});
   })
   insertTask.error((e) => {
-    res.send(e.message);
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
   })
 }
 
@@ -38,10 +41,13 @@ task.delete = (req, res, next) => {
     }
   })
   delTask.then((ret) => {
-    res.send('delete succeeded');
+    res.json({isSucceeded: true});
   })
   delTask.error((e) => {
-    res.send(e.message);
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
   })
 }
 
