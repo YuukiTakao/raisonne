@@ -1,6 +1,8 @@
-function postByFetch(url, target_id, isCompleted) {
-  url = location.href + url;
+function postByFetch(url, isCompleted) {
+  const url = location.href + url;
+
   console.log('{id: ' + target_id + '}');
+  
   const obj = {id: target_id, task_status: isCompleted};
   const method = "POST";
   const body = JSON.stringify(obj);
