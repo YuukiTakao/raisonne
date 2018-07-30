@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - "./docker/mysql-volume:/var/lib/mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=0217Yuki!"
+      - "MYSQL_DATABASE=raisonne"
+      - "MYSQL_USER=yuuki"
+      - "MYSQL_PASSWORD=0217Yuki"
+
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/node-docker
+    container_name: node
+    volumes:
+      - "./:/root/src"
+    environment:
+      - "PORT=80"
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - "8080:80"
