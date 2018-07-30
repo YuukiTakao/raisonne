@@ -5,15 +5,9 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var fs = require('fs');
 
-var indexRouter = require('./routes/index.js');
-var usersRouter = require('./routes/users.js');
-
-const apiRouter = require('./routes/api.js');
-
-
 var app = express();
 
-//LOGGING
+// logging
 var FileStreamRotator = require('file-stream-rotator');
 var logDirectory = __dirname + '/log/access_log';
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
@@ -37,9 +31,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// rooting
+const indexRouter = require('./routes/index.js');
+const usersRouter = require('./routes/users.js');
+const apiRouter = require('./routes/api.js');
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api', apiRouter);
+app.use('/task', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

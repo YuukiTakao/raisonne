@@ -29,15 +29,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/task/update', function(req, res, next) {
-  
-  models.tasks
-    .update({completed: Boolean(req.body.task_status)},{ where: { id: req.body.id}}) // {更新内容},{更新対象}
-    .then(result=> {
-      const param = {result:"Hello World !"};
-      res.header('Content-Type', 'application/json; charset=utf-8')
-      res.send(param);
-  })
-});
+router.post('/task/update', );
 
 module.exports = router;
