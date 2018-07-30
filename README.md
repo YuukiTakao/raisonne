@@ -12,11 +12,11 @@ cd /path/to/raisonne
 ```
 docker-compose up -d
 ```
-4. nodeコンテナにssh
+4. nodeコンテナにssh（マイグレーション済みであれば不要）
 ```
 docker-compose exec node /bin/bash
 ```
-5. nodeコンテナ上でマイグレーション実行
+5. nodeコンテナ上でマイグレーション実行（初回起動時のみ）
 ```
 node_modules/.bin/sequelize db:migrate
 ```
@@ -26,12 +26,18 @@ node_modules/.bin/sequelize db:migrate
 http://127.0.0.1:8080/
 ```
 
+---
 
 - -dなしで起動するとフォアになる。こっちのほうがlogsで出力を拾いに行かなくて良いので楽。
 
 - ```docker-compose```はdocker-compose.ymlのあるディレクトリにいる状態で実行しないと期待動作をしないので注意
 
 - nodemonが入っているのでファイルを更新すると自動的にnode再起動して変更が反映されます
+
+- raisonneディレクトリがnodeコンテナの/root/src/にマウントされるようになってます
+
+- ローカルにdocker/mysql-volumeを作ってからでないと起動できないかも知れない
+  - mysqlに保存した内容がこのディレクトリに保存されます（mysqlコンテナの/va/lib/mysqlにマウントされる）
 
 # その他Dockerの操作
 
