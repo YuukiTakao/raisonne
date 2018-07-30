@@ -14,7 +14,7 @@ table
       each task in tasks
         tr
           - i++
-          td: label: input#check(type='checkbox' onChange="postByFetch(`update/${task.id}`,this.checked)" checked=task.completed)
+          td: label: input#check(type='checkbox' onChange="postByFetch('api/task/update/" + task.id + "', this.checked)" checked=task.completed)
           td #{task.title}
           td #{task.list_id}
           td #{task.start_date}
