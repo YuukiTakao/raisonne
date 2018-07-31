@@ -2,27 +2,43 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index.js');
-var usersRouter = require('./routes/users.js');
+var morgan = require('morgan');
+var fs = require('fs');
 
 var app = express();
+
+// logging
+var FileStreamRotator = require('file-stream-rotator');
+var logDirectory = __dirname + '/log/access_log';
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+var accessLogStream = FileStreamRotator.getStream({
+  filename: logDirectory + '/access-%DATE%.log',
+  frequency: 'daily',
+  verbose: false,
+  date_format: "YYYY-MM-DD"
+});
+app.use(morgan('combined', {stream: accessLogStream}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
-
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// rooting
+const indexRouter = require('./routes/index.js');
+const usersRouter = require('./routes/users.js');
+const apiRouter = require('./routes/api.js');
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/list', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

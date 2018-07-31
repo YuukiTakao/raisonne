@@ -3,22 +3,13 @@ table
       tr 
         th Completed
         th Task Name
-        th List Id
-        th Start Date
-        th Close Date
-        th Completion Date
-        th Created At
-        th Updated At
     tbody  
       - var i = 0
       each task in tasks
         tr
           - i++
-          td: label: input(id='check' type='checkbox' onChange="postByFetch('http://192.168.33.10:3000/update', "+task.id +",this.checked)")
-          td #{task.title}
-          td #{task.list_id}
-          td #{task.start_date}
-          td #{task.close_date}
-          td #{task.completion_date}
-          td #{task.created_at}
-          td #{task.updated_at}
+          td
+            label
+              input(type='checkbox' onChange="postByFetch('task/update/"+task.id +"',this.checked)" checked= task.completed)
+          td 
+            input(type='text' value= task.title size='30' name='text'+i )
