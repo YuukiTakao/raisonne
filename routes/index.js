@@ -12,7 +12,7 @@ const logger = require('../config/logger.js');
 const models = require('../models');
 
 /* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
 
     logger.info('route.get START');   // ここでログ出してます！！！
     // tasksモデルの全データを取得
@@ -29,6 +29,5 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/task/update', );
 
 module.exports = router;

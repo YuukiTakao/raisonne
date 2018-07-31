@@ -38,7 +38,7 @@ const apiRouter = require('./routes/api.js');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/task', apiRouter);
+app.use('/list', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
