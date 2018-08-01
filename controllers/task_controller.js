@@ -12,7 +12,7 @@ task.index = (req, res, next) => {
       tasks: taskObjArray,
     };
     // ViewにModelのデータを渡す
-    res.render('index', responseJson);
+    res.render('list', responseJson);
 });
 }
 
