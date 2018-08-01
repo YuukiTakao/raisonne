@@ -34,11 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // rooting
 const indexRouter = require('./routes/index.js');
 const usersRouter = require('./routes/users.js');
-const apiRouter = require('./routes/api.js');
+const taskRouter = require('./routes/tasks.js');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/list', apiRouter);
+app.use('/lists', taskRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

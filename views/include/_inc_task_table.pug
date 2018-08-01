@@ -12,4 +12,5 @@ table
             label
               input(type='checkbox' onChange="postByFetch('task/update/"+task.id +"',this.checked)" checked= task.completed)
           td 
-            input(type='text' value= task.title size='30' name='text'+i )
+            label
+              input(type='text' value= task.title size='30' name='text'+i )
