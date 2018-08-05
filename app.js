@@ -32,15 +32,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // rooting
-const indexRouter = require('./routes/index.js');
-const usersRouter = require('./routes/users.js');
-const taskRouter = require('./routes/tasks.js');
 const listRouter = require('./routes/lists.js');
+const spaceRouter = require('./routes/space.js');
+const taskRouter = require('./routes/tasks.js');
+const usersRouter = require('./routes/users.js');
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// mapping
+app.use('/', spaceRouter);
 app.use('/lists', listRouter);
 app.use('/tasks', taskRouter);
+app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
