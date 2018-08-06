@@ -1,10 +1,10 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: rgba(141, 140, 141, 0.925);
 }
 
 table {
@@ -14,4 +14,18 @@ table {
 
 table th, table td {
   border: dashed 1px orange;
+}
+
+.back_button{
+	font-size: 100%;
+	font-weight: bold;
+	color: rgb(0, 217, 255);
+  text-decoration: back;
+  opacity: 0.2;
+}
+
+.back_button:hover {
+	color: rgb(0, 217, 255);
+  text-decoration: underline;
+  opacity: 1.0;
 }
