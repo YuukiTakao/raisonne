@@ -21,11 +21,11 @@ table th, table td {
 	font-weight: bold;
 	color: rgb(0, 217, 255);
   text-decoration: back;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .back_button:hover {
-	color: rgb(0, 217, 255);
+	color: rgb(0, 120, 255);
   text-decoration: underline;
   opacity: 1.0;
 }
