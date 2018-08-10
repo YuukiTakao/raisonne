@@ -14,4 +14,4 @@ form(name=taskTable)
                 input(type='checkbox' onChange="postByFetch('/tasks/update/',"+task.id +",null,this.checked)" checked= task.completed)
             td 
               label
-                input(type='text' id='text'+i value=task.title size='50' onkeydown="nextForm('taskTable',"+task.id+","+task.title +")" class='radius')
+                input(type='text' id='text'+i value=task.title size='50' onkeydown="nextForm('taskTable',"+task.id+","+"this)" class='radius')
