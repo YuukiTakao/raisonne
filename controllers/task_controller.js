@@ -24,8 +24,15 @@ task.regist = (req, res, next) => {
 /* タスクの更新 */
 task.update = (req, res, next) => {
   const targetId = req.params.id;
+  console.log(req.body.taskStatus);
+  if (req.body.title){
+    updateObj = {title: req.body.title};
+  } else if (req.body.taskStatus != null) {
+    updateObj = {completed: req.body.taskStatus};
+  };
+
   const updateTask = models.tasks.update(
-    {completed: Boolean(req.body.task_status)}, //更新内容
+    updateObj, //更新内容
     { where: { id: targetId}} //更新対象
   );
   updateTask.then(result=> {
