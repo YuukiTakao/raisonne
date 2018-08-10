@@ -1,15 +1,17 @@
-table
-    thead
-      tr 
-        th Completed
-        th Task Name
-    tbody  
-      - var i = 0
-      each task in tasks
-        tr
-          - i++
-          td
-            label
-              input(type='checkbox' onChange="postByFetch('task/update/"+task.id +"',this.checked)" checked= task.completed)
-          td 
-            input(type='text' value= task.title size='30' name='text'+i )
+form(name=taskTable)
+  table
+      thead
+        tr 
+          th(class='width-30px') 
+          th Task Name
+      tbody  
+        - var i = 0
+        each task in tasks
+          tr
+            - i++
+            td(class='width-30px')
+              label
+                input(type='checkbox' onChange="postByFetch('/tasks/update/',"+task.id +",this.checked)" checked= task.completed)
+            td 
+              label
+                input(type='text' id='text'+i value=task.title size='50' onkeydown="next_form('taskTable')" class='radius')

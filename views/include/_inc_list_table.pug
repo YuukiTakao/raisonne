@@ -1,0 +1,11 @@
+table
+    thead
+      tr 
+        th List Name
+    tbody  
+      - var i = 0
+      each list in lists
+        tr
+          - i++
+          td
+            a(href='http://192.168.33.10:3000/lists/'+list.id) #{list.title}

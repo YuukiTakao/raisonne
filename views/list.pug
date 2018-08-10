@@ -1,6 +1,10 @@
 extends layout
 
 block content
+  
+  header 
+    a(href='javascript:history.back();' class='back_button') < #{title}
+    
   h1= title
   
   p Welcome to #{title}
