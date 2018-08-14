@@ -7,24 +7,24 @@ task.regist = (req, res, next) => {
   const param = req.body;
   const insertTask = models.tasks.create({
     title: param.title,
-    start_date: param.start_date,
-    close_date: param.close_date,
-  })
+    list_id: param.listId
+  });
   insertTask.then((ret) => {
     res.json({isSucceeded: true});
-  })
+  });
   insertTask.error((e) => {
     res.json({
       isSucceeded: false,
       message: e.message
     });
-  })
+  });
 }
 
 /* タスクの更新 */
 task.update = (req, res, next) => {
   const targetId = req.params.id;
   console.log(req.body.taskStatus);
+  
   if (req.body.title){
     updateObj = {title: req.body.title};
   } else if (req.body.taskStatus != null) {
