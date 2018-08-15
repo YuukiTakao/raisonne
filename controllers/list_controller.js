@@ -18,7 +18,7 @@ tasks.index = (req, res, next) => {
       title: 'raisonne',
       tasks: taskObjArray,
     };
-    console.log(taskObjArray[0].title);
+    console.log(taskObjArray);
 
     // ViewにModelのデータを渡す
     res.render('list', responseJson);
