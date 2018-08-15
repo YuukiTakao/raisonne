@@ -1,9 +1,4 @@
 function postByFetch(request, taskId, taskTitle, listId, isCompleted) {
-  console.log('request: '+ request);
-  console.info('taskId: '+ taskId);
-  console.info('taskTitle: '+ taskTitle);
-  console.info('listId: '+ listId);
-  console.log('isCompleted: '+ isCompleted);
 
   var obj = "";
   var url = "";
