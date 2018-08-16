@@ -5,9 +5,11 @@ let task = {};
 /* タスクの登録 */
 task.regist = (req, res, next) => {
   const param = req.body;
+  console.log('list_id: '+ param.list_id);
+  console.log('listId: '+ param.listId);
   const insertTask = models.tasks.create({
     title: param.title,
-    list_id: param.listId
+    list_id: param.list_id
   });
   insertTask.then((ret) => {
     res.json({isSucceeded: true});

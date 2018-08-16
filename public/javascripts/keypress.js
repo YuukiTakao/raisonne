@@ -1,12 +1,13 @@
 console.log('read');
-function nextForm(targetFormObj, taskId, listId, textBox){
-  var inputArray = [].slice.call(targetFormObj);
-  var currentFNo = inputArray.indexOf(textBox);
-  console.info('taskId: '+ taskId);
-  console.info('textBox.value: '+ textBox.value);
-  console.info('listId: '+ listId);
-  
+function nextForm(targetFormObj, taskId, listId, textBox){  
   if (event.keyCode == 13){
+
+    var inputArray = [].slice.call(targetFormObj);
+    var currentFNo = inputArray.indexOf(textBox);
+    console.info('taskId: '+ taskId);
+    console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
+    console.info('listId: '+ listId);
+
     // 一行に２つのinput要素があるので+2する
     var nextFNo = currentFNo + 2;
 
@@ -26,21 +27,18 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     document.querySelector('tbody').appendChild(cloneTr);
 
     var elm = document.querySelector(`#text${nextId}`);
-    // elm.removeAttribute('value');
-    elm.setAttribute('value', "");
-
-
+    elm.removeAttribute('value');
+    elm.setAttribute("value", "");
     elm.addEventListener(
       "keydown",
-      function(event){nextForm(targetFormObj, taskId, "", listId, event.target);}
+      function(event){nextForm(targetFormObj, taskId, listId, event.target);}
     );
     elm.focus();
-
-    console.log('elm: '+elm);
-    if (elm.value !== null || elm.value !== "") {
-      postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
+    
+    if (textBox.getAttribute('value')) {
+      postByFetch('/tasks/update/', taskId, textBox.getAttribute('value'), listId, null);
     } else {
-      postByFetch('/tasks/regist', null, textBox.value, listId, null);
+      postByFetch('/tasks/regist', null, textBox.getAttribute('value'), listId, null);
     }
     
   }

@@ -2,7 +2,9 @@ function postByFetch(request, taskId, taskTitle, listId, isCompleted) {
 
   var obj = "";
   var url = "";
-  if (request === '/tasks/update/'){
+  console.log('request: '+ request);
+  console.log('taskTitle: '+ taskTitle);
+  if (request == '/tasks/update/'){
 
     obj = {
       id: taskId,
@@ -11,15 +13,15 @@ function postByFetch(request, taskId, taskTitle, listId, isCompleted) {
     };
     url = location.protocol+'//'+location.host + request + taskId;
 
-  } else if (request === '/tasks/regist'){
-
+  } else if (request == '/tasks/regist'){
+    console.log('taskTitle: '+ taskTitle);
     obj = {
       title: taskTitle,
       list_id: listId
     };
     url = location.protocol+'//'+location.host + request;
 
-  }
+  }console.log('当たり前: ');
 
   const method = "POST";
   const body = JSON.stringify(obj);
