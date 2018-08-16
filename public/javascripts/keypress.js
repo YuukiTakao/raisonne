@@ -36,9 +36,9 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     elm.focus();
     
     if (textBox.getAttribute('value')) {
-      postByFetch('/tasks/update/', taskId, textBox.getAttribute('value'), listId, null);
+      postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
     } else {
-      postByFetch('/tasks/regist', null, textBox.getAttribute('value'), listId, null);
+      postByFetch('/tasks/regist', null, textBox.value, listId, null);
     }
     
   }
