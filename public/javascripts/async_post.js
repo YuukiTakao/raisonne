@@ -20,8 +20,7 @@ function postByFetch(request, taskId, taskTitle, listId, isCompleted) {
       list_id: listId
     };
     url = location.protocol+'//'+location.host + request;
-
-  }console.log('当たり前: ');
+  }
 
   const method = "POST";
   const body = JSON.stringify(obj);

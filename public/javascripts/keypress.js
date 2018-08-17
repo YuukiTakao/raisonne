@@ -7,16 +7,21 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     console.info('taskId: '+ taskId);
     console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
     console.info('listId: '+ listId);
+    console.info('currentFNo: '+ currentFNo);
 
     // 一行に２つのinput要素があるので+2する
     var nextFNo = currentFNo + 2;
-
-    // 最終行の取得
-    var trArray = document.querySelectorAll('tr');
-    var bottomTr = trArray[trArray.length - 1];
-    
-    // 追加行のinput要素のid生成
+    //追加行のinput要素のid生成
     var nextId = taskId + 1;
+    // アクティブの取得
+    var targetTable = document.getElementById('taskTable');
+    var newRow = targetTable.insertRow(currentFNo);
+    var cell1 = newRow.insertCell(-1);
+    var cell2 = newRow.insertCell(-1);
+    cell1.innerHTML = "type='text' id=`text${nextId}` value='' size='50' onkeydown=`nextForm(document.forms.taskForm,${nextId},${listId},${textBox})` class='radius'"
+        // セルの内容入力
+    
+    
 
     // 追加行要素の作成
     var cloneTr = bottomTr.cloneNode(true);
@@ -24,11 +29,13 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     cloneInput.id = `text${nextId}`;
     cloneInput.removeAttribute("onkeydown");
 
+    //document.querySelector('tbody').appendChild(cloneTr);
     document.querySelector('tbody').appendChild(cloneTr);
 
     var elm = document.querySelector(`#text${nextId}`);
     elm.removeAttribute('value');
-    elm.setAttribute("value", "");
+    //elm.setAttribute("value", "");
+    //elm.value = "";
     elm.addEventListener(
       "keydown",
       function(event){nextForm(targetFormObj, taskId, listId, event.target);}
