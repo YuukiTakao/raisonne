@@ -32,7 +32,8 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
         // セルの内容入力
     
-    newRow.focus();
+    document.getElementById(`text${newRowNo}`).focus();
+    // newRow.focus();
 
     if (textBox.getAttribute('value')) {
       postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
