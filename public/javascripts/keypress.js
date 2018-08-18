@@ -8,40 +8,32 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
     console.info('listId: '+ listId);
     console.info('currentFNo: '+ currentFNo);
+    console.info('textBox.id: '+ textBox.id);
 
     // 一行に２つのinput要素があるので+2する
-    var nextFNo = currentFNo + 2;
+    // var nextFNo = currentFNo + 2;
+
+    // テーブルオブジェクト取得
+    var targetTable = document.getElementById('taskTable');
+
+    // 選択されたテキストボックスの行数取得
+    var targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
+    var newRowNo = targetRowNo + 1;
+
     //追加行のinput要素のid生成
     var nextId = taskId + 1;
-    // アクティブの取得
-    var targetTable = document.getElementById('taskTable');
-    var newRow = targetTable.insertRow(currentFNo);
+    console.info('newRowNo: '+ newRowNo);
+
+    var newRow = targetTable.insertRow(newRowNo);
     var cell1 = newRow.insertCell(-1);
     var cell2 = newRow.insertCell(-1);
-    cell1.innerHTML = "type='text' id=`text${nextId}` value='' size='50' onkeydown=`nextForm(document.forms.taskForm,${nextId},${listId},${textBox})` class='radius'"
+
+    cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
+    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
         // セルの内容入力
     
-    
+    newRow.focus();
 
-    // 追加行要素の作成
-    var cloneTr = bottomTr.cloneNode(true);
-    var cloneInput = cloneTr.querySelector('input[type="text"]');
-    cloneInput.id = `text${nextId}`;
-    cloneInput.removeAttribute("onkeydown");
-
-    //document.querySelector('tbody').appendChild(cloneTr);
-    document.querySelector('tbody').appendChild(cloneTr);
-
-    var elm = document.querySelector(`#text${nextId}`);
-    elm.removeAttribute('value');
-    //elm.setAttribute("value", "");
-    //elm.value = "";
-    elm.addEventListener(
-      "keydown",
-      function(event){nextForm(targetFormObj, taskId, listId, event.target);}
-    );
-    elm.focus();
-    
     if (textBox.getAttribute('value')) {
       postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
     } else {
