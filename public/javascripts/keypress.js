@@ -8,7 +8,6 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
     console.info('listId: '+ listId);
     console.info('currentFNo: '+ currentFNo);
-    console.info('textBox.id: '+ textBox.id);
 
     // テーブルオブジェクト取得
     var targetTable = document.getElementById('taskTable');
@@ -34,8 +33,16 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     if (textBox.getAttribute('value')) {
       postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
     } else {
-      postByFetch('/tasks/regist', null, textBox.value, listId, null);
+      postByFetch('/tasks/regist', null, textBox.value, listId, null, targetRowNo);
     }
     
   }
 };
+
+function obj_dump(obj) {
+	var txt = '';
+	for (var one in obj){
+		txt += one + "=" + obj[one] + "\n";
+	}
+	console.log(txt);
+}
