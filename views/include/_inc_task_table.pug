@@ -1,5 +1,5 @@
-form(name=taskTable)
-  table
+form(name='taskForm')
+  table(id='taskTable')
       thead
         tr 
           th(class='width-30px') 
@@ -11,7 +11,7 @@ form(name=taskTable)
             - i++
             td(class='width-30px')
               label
-                input(type='checkbox' onChange=`postByFetch('/tasks/update/',${task.id},null,this.checked)` checked= task.completed)
+                input(type='checkbox' onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked)` checked= task.completed)
             td 
               label
-                input(type='text' id='text'+i value=task.title size='50' onkeydown=`nextForm('taskTable', ${task.id}, this)` class='radius')
+                input(type='text' id=`text${i}` value=task.title size='50' onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)` class='radius')

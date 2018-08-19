@@ -1,46 +1,48 @@
 console.log('read');
-
-function nextForm(formName, taskId, textBox){
-  var inputArray = [].slice.call(document.forms[0]);
-  var currentFNo = inputArray.indexOf(textBox);
-
+function nextForm(targetFormObj, taskId, listId, textBox){  
   if (event.keyCode == 13){
-    var nextFNo = currentFNo + 2;
 
-    if (taskId !== null) {
-      postByFetch('/tasks/update/',taskId,textBox.value,null);
-    }
+    var inputArray = [].slice.call(targetFormObj);
+    var currentFNo = inputArray.indexOf(textBox);
+    console.info('taskId: '+ taskId);
+    console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
+    console.info('listId: '+ listId);
+    console.info('currentFNo: '+ currentFNo);
 
-    // 次の行があれば次の行へフォーカス移動、なければ行追加してフォーカス
-    if (inputArray.length > nextFNo) {
-      document.forms[0][nextFNo].focus();
+    // テーブルオブジェクト取得
+    var targetTable = document.getElementById('taskTable');
+
+    // 選択されたテキストボックスの行数取得
+    var targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
+    var newRowNo = targetRowNo + 1;
+
+    //追加行のinput要素のid生成
+    var nextId = taskId + 1;
+    console.info('newRowNo: '+ newRowNo);
+
+    // 新しい行を追加
+    var newRow = targetTable.insertRow(newRowNo);
+    var cell1 = newRow.insertCell(-1);
+    var cell2 = newRow.insertCell(-1);
+    cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
+    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
+    
+    // 新しい行にフォーカスを移動
+    document.getElementById(`text${newRowNo}`).focus();
+
+    if (textBox.getAttribute('value')) {
+      postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
     } else {
-      // 最終行の取得
-      var trArray = document.querySelectorAll('tr');
-      var bottomTr = trArray[trArray.length - 1];
-
-      // 追加行のinputにつけるidの生成
-      var idMatched = bottomTr.querySelector('input[type="text"]').id.match(/([a-zA-Z]+)([0-9]+$)/);
-      var num = parseInt(idMatched[2]) + 1;
-      var nextId = idMatched[1] + num;
-
-      // 追加行要素の作成
-      var cloneTr = bottomTr.cloneNode(true);
-      var cloneInput = cloneTr.querySelector('input[type="text"]');
-      cloneInput.id = nextId;
-      cloneInput.value = "";
-      cloneInput.removeAttribute("onkeydown");
-
-      document.querySelector('tbody').appendChild(cloneTr);
-
-      var elm = document.querySelector('#'+nextId);
-      elm.addEventListener(
-        "keydown",
-        function(event){nextForm('taskTable', null, event.target);},
-        false
-      );
-
-      elm.focus();
+      postByFetch('/tasks/regist', null, textBox.value, listId, null, targetRowNo);
     }
+    
   }
 };
+
+function obj_dump(obj) {
+	var txt = '';
+	for (var one in obj){
+		txt += one + "=" + obj[one] + "\n";
+	}
+	console.log(txt);
+}

@@ -8,6 +8,9 @@ tasks.index = (req, res, next) => {
   const targetId = req.params.id;
   models.tasks.findAll(
     {
+      order:['order_id']
+    },
+    {
       where:{
         list_id: targetId
       }
@@ -18,7 +21,7 @@ tasks.index = (req, res, next) => {
       title: 'raisonne',
       tasks: taskObjArray,
     };
-    console.log(taskObjArray[0].title);
+    console.log(taskObjArray);
 
     // ViewにModelのデータを渡す
     res.render('list', responseJson);

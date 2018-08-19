@@ -17,6 +17,9 @@ module.exports = {
       list_id: {
         type: Sequelize.INTEGER
       },
+      order_id: {
+        type: Sequelize.INTEGER
+      },
       start_date: {
         type: Sequelize.DATE
       },
