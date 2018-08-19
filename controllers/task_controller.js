@@ -7,8 +7,8 @@ let task = {};
 /* タスクの登録 */
 task.regist = (req, res, next) => {
   const param = req.body;
-  console.log('並べ替え開始');
   console.log('target_order_id: '+param.target_order_id);
+
   /* タスク並び順の更新 */
   const incrementTasksGteOrderId = models.tasks.increment(
     'order_id', // 更新内容
@@ -30,6 +30,7 @@ task.regist = (req, res, next) => {
       message: e.message
     });
   });
+
   /* タスク登録 */
   const insertTask = models.tasks.create({
     title: param.title,
@@ -46,6 +47,7 @@ task.regist = (req, res, next) => {
     });
   })
 }
+
 
 /* タスクの更新 */
 task.update = (req, res, next) => {
@@ -73,6 +75,7 @@ task.update = (req, res, next) => {
     });
   })
 };
+
 
 var makeTaskUpdateObj = (title, taskStatus) => {
   if (title){
