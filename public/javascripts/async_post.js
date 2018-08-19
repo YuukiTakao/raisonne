@@ -1,11 +1,9 @@
 function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
-
   let obj = "";
   let url = "";
   console.log('request: '+ request);
-  console.log('taskTitle: '+ taskTitle);
+  
   if (request == '/tasks/update/'){
-
     obj = {
       id: taskId,
       title: taskTitle,
@@ -14,9 +12,6 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
     url = location.protocol+'//'+location.host + request + taskId;
 
   } else if (request == '/tasks/regist'){
-    console.log('taskTitle: '+ taskTitle);
-    console.log('listId: '+ listId);
-    console.log('orderId: '+ orderId);
     obj = {
       title: taskTitle,
       list_id: listId,
@@ -24,7 +19,6 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
     };
     url = location.protocol+'//'+location.host + request;
   }
-
   const method = "POST";
   const body = JSON.stringify(obj);
   const headers = {
@@ -37,8 +31,3 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
   return fetch(url, {method, headers, body})
     .then(response => console.log(response));
 };
-
-function makeRequestBody(request){
-  console.log(request);
-
-}
