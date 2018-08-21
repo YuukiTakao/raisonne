@@ -80,7 +80,7 @@ task.update = (req, res, next) => {
 var makeTaskUpdateObj = (title, taskStatus) => {
   if (title){
     return {title: title};
-  } else if (taskStatus) {
+  } else if (taskStatus != null) {
     return {completed: taskStatus};
   };
 }
