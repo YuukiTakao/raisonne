@@ -50,3 +50,8 @@ input.radius {
   text-decoration: underline;
   opacity: 1.0;
 }
+
+.completed {
+  color: grey;
+  text-decoration: line-through;
+}

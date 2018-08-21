@@ -1,9 +1,10 @@
 function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
   let obj = "";
   let url = "";
-  console.log('request: '+ request);
+  console.log('isCompleted: '+ isCompleted);
   
   if (request == '/tasks/update/'){
+
     obj = {
       id: taskId,
       title: taskTitle,
