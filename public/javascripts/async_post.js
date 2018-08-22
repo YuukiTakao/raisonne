@@ -1,10 +1,13 @@
 function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
-
   let obj = "";
   let url = "";
-  console.log('request: '+ request);
-  console.log('taskTitle: '+ taskTitle);
+  
   if (request == '/tasks/update/'){
+
+    // チェックボックス変更時のみスタイル変更処
+    if (isCompleted != null){
+      changeTaskStyleByStatus(isCompleted, document.taskForm.task[orderId - 1], 'completed');
+    }
 
     obj = {
       id: taskId,
@@ -12,11 +15,8 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
       taskStatus: isCompleted
     };
     url = location.protocol+'//'+location.host + request + taskId;
-
   } else if (request == '/tasks/regist'){
-    console.log('taskTitle: '+ taskTitle);
-    console.log('listId: '+ listId);
-    console.log('orderId: '+ orderId);
+
     obj = {
       title: taskTitle,
       list_id: listId,
@@ -24,7 +24,6 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
     };
     url = location.protocol+'//'+location.host + request;
   }
-
   const method = "POST";
   const body = JSON.stringify(obj);
   const headers = {
@@ -38,7 +37,12 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
     .then(response => console.log(response));
 };
 
-function makeRequestBody(request){
-  console.log(request);
+/**
+ * リクエストの種類ごとにリクエストデータを作成
+ * @param {string} request 
+ */
+function makeRequest(request, ){
 
-}
+  return;
+
+};

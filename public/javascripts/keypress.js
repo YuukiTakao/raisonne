@@ -1,24 +1,17 @@
 console.log('read');
 function nextForm(targetFormObj, taskId, listId, textBox){  
   if (event.keyCode == 13){
-
-    var inputArray = [].slice.call(targetFormObj);
-    var currentFNo = inputArray.indexOf(textBox);
-    console.info('taskId: '+ taskId);
-    console.info('textBox.getAttribute(value): '+ textBox.getAttribute('value'));
-    console.info('listId: '+ listId);
-    console.info('currentFNo: '+ currentFNo);
-
-    // テーブルオブジェクト取得
-    var targetTable = document.getElementById('taskTable');
-
+    
     // 選択されたテキストボックスの行数取得
     var targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
     var newRowNo = targetRowNo + 1;
 
     //追加行のinput要素のid生成
     var nextId = taskId + 1;
-    console.info('newRowNo: '+ newRowNo);
+    console.log('newRowNo: '+ newRowNo);
+
+    // テーブルオブジェクト取得
+    var targetTable = document.getElementById('taskTable');
 
     // 新しい行を追加
     var newRow = targetTable.insertRow(newRowNo);
@@ -35,7 +28,6 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     } else {
       postByFetch('/tasks/regist', null, textBox.value, listId, null, targetRowNo);
     }
-    
   }
 };
 

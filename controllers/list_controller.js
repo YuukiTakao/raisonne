@@ -6,11 +6,10 @@ tasks.index = (req, res, next) => {
   
   // パラメータのIDでリストを取得
   const targetId = req.params.id;
+  
   models.tasks.findAll(
     {
-      order:['order_id']
-    },
-    {
+      order:['order_id'],
       where:{
         list_id: targetId
       }

@@ -6,12 +6,28 @@ form(name='taskForm')
           th Task Name
       tbody  
         - var i = 0
+        //-  チェックボックスがチェックされている場合、テキストボックスにcompletedクラスを追加する
+
         each task in tasks
           tr
             - i++
             td(class='width-30px')
               label
-                input(type='checkbox' onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked)` checked= task.completed)
+                input(
+                  type='checkbox'
+                  name='check' 
+                  id=`check${task.id}` 
+                  onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked, ${i})` 
+                  checked=task.completed
+                )
             td 
               label
-                input(type='text' id=`text${i}` value=task.title size='50' onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)` class='radius')
+                input(
+                  type='text' 
+                  name='task'
+                  id=`text${i}` 
+                  value=task.title 
+                  size='50' 
+                  onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)` 
+                  class='radius'
+                )
