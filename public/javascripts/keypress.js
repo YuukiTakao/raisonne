@@ -8,7 +8,7 @@ function nextForm(targetFormObj, taskId, listId, textBox){
 
     //追加行のinput要素のid生成
     var nextId = taskId + 1;
-    console.info('newRowNo: '+ newRowNo);
+    console.log('newRowNo: '+ newRowNo);
 
     // テーブルオブジェクト取得
     var targetTable = document.getElementById('taskTable');

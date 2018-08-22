@@ -1,9 +1,13 @@
 function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
   let obj = "";
   let url = "";
-  console.log('isCompleted: '+ isCompleted);
   
   if (request == '/tasks/update/'){
+
+    // チェックボックス変更時のみスタイル変更処
+    if (isCompleted != null){
+      changeTaskStyleByStatus(isCompleted, document.taskForm.task[orderId - 1], 'completed');
+    }
 
     obj = {
       id: taskId,
@@ -11,8 +15,8 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
       taskStatus: isCompleted
     };
     url = location.protocol+'//'+location.host + request + taskId;
-
   } else if (request == '/tasks/regist'){
+
     obj = {
       title: taskTitle,
       list_id: listId,
@@ -31,4 +35,14 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
 
   return fetch(url, {method, headers, body})
     .then(response => console.log(response));
+};
+
+/**
+ * リクエストの種類ごとにリクエストデータを作成
+ * @param {string} request 
+ */
+function makeRequest(request, ){
+
+  return;
+
 };
