@@ -1,4 +1,4 @@
-function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
+function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null, newFlg=null) {
   let obj = "";
   let url = "";
   
