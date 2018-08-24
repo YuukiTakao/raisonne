@@ -20,7 +20,7 @@ form(name='taskForm')
                     onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked, ${i})`
                     checked=task.completed
                   )
-              td
+              td(class='height-10px')
                 label
                   input(
                     type='text'
@@ -31,9 +31,11 @@ form(name='taskForm')
                     onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)`
                     class='radius'
                   )
+                  p(class='setteings') •••
+                
         else
           tr
-            td(class='width-30px')
+            td(class='width-30px height-10px')
               label
                 input(
                   type='checkbox'
