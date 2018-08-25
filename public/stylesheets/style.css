@@ -17,24 +17,20 @@ table th, table td {
   
 }
 
-table td {
+table tr td {
   width: 960px;
-  height: 10px;
-  padding: 0px;
-  margin: 0px;
+  height: 15px;
+  padding:5px;
+  margin: 5px;
 }
 
 table td label {
-  padding: 6px;
+  /* padding: 6px; */
 }
 
 .width-30px {
   width: 30px;
-  
-}
-
-.height-10px {
-  margin: 0px;
+  text-align: center;
 }
 
 input[type=checkbox] {
@@ -43,12 +39,16 @@ input[type=checkbox] {
 
 input[type=text] {
   padding:0px;
+  display: inline;
+  vertical-align:middle;
 }
 
 .setteings{
   float: right;
-  padding:2px;
+  padding:5px;
   color:gray;
+  display: inline;
+  /* line-height: 3em; */
 }
 
 input.radius {
@@ -57,6 +57,7 @@ input.radius {
   border-radius:10px;
   box-shadow: none;
   padding: 0px;
+  margin: 0px;
 }
 
 .back_button{

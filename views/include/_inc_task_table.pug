@@ -31,7 +31,7 @@ form(name='taskForm')
                     onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)`
                     class='radius'
                   )
-                  p(class='setteings') •••
+                small(class='setteings') •••
                 
         else
           tr
@@ -54,3 +54,4 @@ form(name='taskForm')
                   onkeydown=`nextForm(document.forms.taskForm,${this.value},'2',this)`
                   class='radius'
                 )
+              small(class='setteings') •••
