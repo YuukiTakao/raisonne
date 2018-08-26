@@ -30,6 +30,10 @@ function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,
       id: taskId
     };
     url = `${location.protocol}//${location.host}${request}${taskId}`;
+    
+    // API成功したらにリファクタする
+    const deleteElm = document.getElementById(`tr${orderId}`);
+    deleteElm.parentNode.removeChild(deleteElm);
   }
 
   const method = "POST";
