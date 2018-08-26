@@ -6,7 +6,8 @@ function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,
 
     // チェックボックス変更時のみスタイル変更処
     if (isCompleted != null){
-      changeTaskStyleByStatus(isCompleted, document.taskForm.task[orderId - 1], 'completed');
+      const targetElm = document.taskForm.task[orderId - 1] || document.taskForm.task
+      changeTaskStyleByStatus(isCompleted, targetElm, 'completed');
     }
 
     obj = {
@@ -29,6 +30,10 @@ function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,
       id: taskId
     };
     url = `${location.protocol}//${location.host}${request}${taskId}`;
+    
+    // API成功したらにリファクタする
+    const deleteElm = document.getElementById(`tr${orderId}`);
+    deleteElm.parentNode.removeChild(deleteElm);
   }
 
   const method = "POST";

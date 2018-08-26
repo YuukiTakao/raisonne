@@ -9,8 +9,8 @@ form(name='taskForm')
         //-  チェックボックスがチェックされている場合、テキストボックスにcompletedクラスを追加する
         if tasks.length > 0
           each task in tasks
-            tr
-              - i++
+            - i++
+            tr(id=`tr${i}`)
               td(class='width-30px')
                 label
                   input(
@@ -33,10 +33,10 @@ form(name='taskForm')
                   )
                 small(
                   class='setteings'
-                  onClick=`postByFetch('/tasks/delete/', ${task.id})`
+                  onClick=`postByFetch('/tasks/delete/',${task.id},null,null,null,${i})`
                 ) •••
         else
-          tr
+          tr(id=`tr${i}`)
             td(class='width-30px')
               label
                 input(
@@ -58,5 +58,5 @@ form(name='taskForm')
                 )
               small(
                 class='setteings'
-                onClick=`postByFetch('/tasks/delete/', '')`
+                onClick=`postByFetch('/tasks/delete/','',null,null,null,${i})`
               ) •••
