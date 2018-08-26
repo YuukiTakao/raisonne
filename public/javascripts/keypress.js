@@ -17,6 +17,7 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     var newRow = targetTable.insertRow(newRowNo);
     var cell1 = newRow.insertCell(-1);
     var cell2 = newRow.insertCell(-1);
+    cell1.classList.add('width-30px');
     cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
     cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
     
