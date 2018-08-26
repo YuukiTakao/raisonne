@@ -1,4 +1,4 @@
-function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,orderId=null) {
+function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,orderId=null, newFlg=null) {
   let obj = "";
   let url = "";
   
@@ -14,7 +14,7 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
       title: taskTitle,
       taskStatus: isCompleted
     };
-    url = location.protocol+'//'+location.host + request + taskId;
+    url = `${location.protocol}//${location.host}${request}${taskId}`;
   } else if (request == '/tasks/regist'){
 
     obj = {
@@ -22,8 +22,15 @@ function postByFetch(request,taskId,taskTitle,listId=null,isCompleted=null,order
       list_id: listId,
       target_order_id: orderId
     };
-    url = location.protocol+'//'+location.host + request;
+    url = `${location.protocol}//${location.host}${request}`;
+  } else if (request == '/tasks/delete/'){
+
+    obj = {
+      id: taskId
+    };
+    url = `${location.protocol}//${location.host}${request}${taskId}`;
   }
+
   const method = "POST";
   const body = JSON.stringify(obj);
   const headers = {

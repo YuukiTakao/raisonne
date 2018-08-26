@@ -1,33 +1,62 @@
 form(name='taskForm')
   table(id='taskTable')
       thead
-        tr 
-          th(class='width-30px') 
+        tr
+          th(class='width-30px')
           th Task Name
-      tbody  
+      tbody
         - var i = 0
         //-  チェックボックスがチェックされている場合、テキストボックスにcompletedクラスを追加する
-
-        each task in tasks
+        if tasks.length > 0
+          each task in tasks
+            tr
+              - i++
+              td(class='width-30px')
+                label
+                  input(
+                    type='checkbox'
+                    name='check'
+                    id=`check${task.id}`
+                    onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked, ${i})`
+                    checked=task.completed
+                  )
+              td(class='height-10px')
+                label
+                  input(
+                    type='text'
+                    name='task'
+                    id=`text${i}`
+                    value=task.title
+                    size='50'
+                    onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)`
+                    class='radius'
+                  )
+                small(
+                  class='setteings'
+                  onClick=`postByFetch('/tasks/delete/', ${task.id})`
+                ) •••
+        else
           tr
-            - i++
-            td(class='width-30px')
+            td(class='width-30px height-10px')
               label
                 input(
                   type='checkbox'
-                  name='check' 
-                  id=`check${task.id}` 
-                  onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked, ${i})` 
-                  checked=task.completed
+                  name='check'
+                  id='check1'
+                  onChange='postByFetch("/tasks/update/", "", null, null, this.checked, 1)'
+                  checked=this.checked
                 )
-            td 
+            td
               label
                 input(
-                  type='text' 
+                  type='text'
                   name='task'
-                  id=`text${i}` 
-                  value=task.title 
-                  size='50' 
-                  onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)` 
+                  id='text1'
+                  size='50'
+                  onkeydown=`nextForm(document.forms.taskForm,${this.value},'2',this)`
                   class='radius'
                 )
+              small(
+                class='setteings'
+                onClick=`postByFetch('/tasks/delete/', '')`
+              ) •••
