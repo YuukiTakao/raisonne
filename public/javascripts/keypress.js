@@ -9,6 +9,7 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     //追加行のinput要素のid生成
     var nextId = taskId + 1;
     console.log('newRowNo: '+ newRowNo);
+    console.log('nextId: '+ nextId);
 
     // テーブルオブジェクト取得
     var targetTable = document.getElementById('taskTable');
@@ -21,7 +22,7 @@ function nextForm(targetFormObj, taskId, listId, textBox){
 
     cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
     const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
-    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${matchedListId},this) class='radius'>`
+    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${matchedListId},this) class='radius'><small class="setteings" onclick="postByFetch('/tasks/delete/',${newRowNo},null,null,null,${newRowNo})">•••</small>`
     
     // 新しい行にフォーカスを移動
     document.getElementById(`text${newRowNo}`).focus();
