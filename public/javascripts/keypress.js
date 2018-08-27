@@ -18,16 +18,18 @@ function nextForm(targetFormObj, taskId, listId, textBox){
     var cell1 = newRow.insertCell(-1);
     var cell2 = newRow.insertCell(-1);
     cell1.classList.add('width-30px');
+
     cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
-    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
+    const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
+    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${matchedListId},this) class='radius'>`
     
     // 新しい行にフォーカスを移動
     document.getElementById(`text${newRowNo}`).focus();
 
     if (textBox.getAttribute('value')) {
-      postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
+      postByFetch('/tasks/update/', taskId, textBox.value, matchedListId, null);
     } else {
-      postByFetch('/tasks/regist', null, textBox.value, listId, null, targetRowNo);
+      postByFetch('/tasks/regist', null, textBox.value, matchedListId, null, targetRowNo);
     }
   }
 };

@@ -53,10 +53,10 @@ form(name='taskForm')
                   name='task'
                   id='text1'
                   size='50'
-                  onkeydown=`nextForm(document.forms.taskForm,${this.value},'2',this)`
+                  onkeydown=`nextForm(document.forms.taskForm,${this.value},'',this)`
                   class='radius'
                 )
               small(
                 class='setteings'
-                onClick=`postByFetch('/tasks/delete/','',null,null,null,${i})`
+                onClick=`postByFetch('/tasks/delete/',"",null,null,null,${i})`
               ) •••
