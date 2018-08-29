@@ -38,7 +38,11 @@ task.regist = (req, res, next) => {
     order_id: param.target_order_id
   });
   insertTask.then((ret) => {
-    res.json({isSucceeded: true});
+    res.json({
+      isSucceeded: true,
+      res:ret,
+      apiType:'tasks/regist'
+    });
   })
   insertTask.error((e) => {
     res.json({
