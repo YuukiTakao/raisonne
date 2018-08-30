@@ -46,15 +46,11 @@ function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,
   console.log(body);
 
   return fetch(url, {method, headers, body})
-    .then(response => console.log(response));
+    .then(response => {
+      return response.json();
+    })
+    .then(resJson => {
+      console.log(resJson);
+    });
 };
 
-/**
- * リクエストの種類ごとにリクエストデータを作成
- * @param {string} request 
- */
-function makeRequest(request, ){
-
-  return;
-
-};
