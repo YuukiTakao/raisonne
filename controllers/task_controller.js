@@ -20,9 +20,11 @@ task.regist = (req, res, next) => {
       }
     } // 更新対象
   );
-  incrementTasksGteOrderId.then(result=> {
-    // res.json({isSucceeded: true});
-    console.log('task order update success');
+  incrementTasksGteOrderId.then(ret=> {
+    // res.json({
+    //   isSucceeded: true
+    // });
+    console.log('task update ok');
   });
   incrementTasksGteOrderId.error((e) => {
     res.json({
@@ -40,8 +42,7 @@ task.regist = (req, res, next) => {
   insertTask.then((ret) => {
     res.json({
       isSucceeded: true,
-      res:ret,
-      apiType:'tasks/regist'
+      response:ret,
     });
   })
   insertTask.error((e) => {
@@ -56,9 +57,6 @@ task.regist = (req, res, next) => {
 /* タスクの更新 */
 task.update = (req, res, next) => {
   const targetId = req.params.id;
-  
-  console.log(req.body.taskStatus);
-
   const updateObj = makeTaskUpdateObj(req.body.title,req.body.taskStatus);
 
   const updateTask = models.tasks.update(
@@ -70,7 +68,10 @@ task.update = (req, res, next) => {
     } // 更新対象
   );
   updateTask.then(result=> {
-    res.json({isSucceeded: true});
+    res.json({
+      isSucceeded: true,
+      response:result,
+    });
   })
   updateTask.error((e) => {
     res.json({
@@ -98,8 +99,11 @@ task.delete = (req, res, next) => {
       id: targetId
     }
   })
-  delTask.then((ret) => {
-    res.json({isSucceeded: true});
+  delTask.then((result) => {
+    res.json({
+      isSucceeded: true,
+      response:result
+    });
   })
   delTask.error((e) => {
     res.json({

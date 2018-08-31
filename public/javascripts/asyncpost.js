@@ -50,7 +50,9 @@ function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,
       return response.json();
     })
     .then(resJson => {
+      // apiのコール結果で色々やる
       console.log(resJson);
-    });
+    }
+  );
 };
 
