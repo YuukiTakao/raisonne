@@ -1,5 +1,5 @@
-console.log('read');
-function nextForm(taskId, textBox){  
+console.log('read keypress.js');
+function nextTextBox(taskId, textBox){  
   if (event.keyCode == 13){
     
     // 選択されたテキストボックスの行数取得
@@ -23,7 +23,17 @@ function nextForm(taskId, textBox){
 
     cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
     const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
-    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(${nextId},this) class='radius'><small class="setteings" onclick="postByFetch('/tasks/delete/',${nextId},null,null,null,${newRowNo})">•••</small>`
+    cell2.innerHTML = `<input 
+        type='text' 
+        id=text${newRowNo} 
+        value='' 
+        onkeydown=nextTextBox(${nextId},this) 
+        class='radius'>
+      <small 
+        class="setteings" 
+        onclick="postByFetch('/tasks/delete/',${nextId},null,null,null,${newRowNo})">
+        •••
+      </small>`
     
     // 新しい行にフォーカスを移動
     document.getElementById(`text${newRowNo}`).focus();
