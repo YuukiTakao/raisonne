@@ -1,58 +1,133 @@
-function postByFetch(request,taskId,taskTitle=null,listId=null,isCompleted=null,orderId=null, newFlg=null) {
-  let obj = "";
+function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
+  let initOption = "";
   let url = "";
-  
-  if (request == '/tasks/update/'){
 
-    // チェックボックス変更時のみスタイル変更処
-    if (isCompleted != null){
-      const targetElm = document.taskForm.task[orderId - 1] || document.taskForm.task
-      changeTaskStyleByStatus(isCompleted, targetElm, 'completed');
-    }
+  switch (request) {
+    case '/tasks/regist':
+      initOption = makeInitOption(
+        {
+          title: textBox.value,
+          list_id: listId,
+          target_order_id: orderId
+        }
+      );
+      url = `${location.protocol}//${location.host}${request}`;
+      break;
 
-    obj = {
-      id: taskId,
-      title: taskTitle,
-      taskStatus: isCompleted
-    };
-    url = `${location.protocol}//${location.host}${request}${taskId}`;
-  } else if (request == '/tasks/regist'){
-
-    obj = {
-      title: taskTitle,
-      list_id: listId,
-      target_order_id: orderId
-    };
-    url = `${location.protocol}//${location.host}${request}`;
-  } else if (request == '/tasks/delete/'){
-
-    obj = {
-      id: taskId
-    };
-    url = `${location.protocol}//${location.host}${request}${taskId}`;
+    case '/tasks/update/':
+      initOption = makeInitOption(
+        {
+          id: taskId,
+          title: textBox.value,
+        }
+      );
+      url = `${location.protocol}//${location.host}${request}${taskId}`;
+      break;
     
-    // API成功したらにリファクタする
-    const deleteElm = document.getElementById(`tr${orderId}`);
-    deleteElm.parentNode.removeChild(deleteElm);
-  }
+    default:
+      console.log("It is an action that does not exist");
+      break;
+  } 
 
-  const method = "POST";
-  const body = JSON.stringify(obj);
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  };
   console.log(url);
-  console.log(body);
+  console.log(initOption);
 
-  return fetch(url, {method, headers, body})
+  return fetch(url, initOption)
     .then(response => {
       return response.json();
     })
     .then(resJson => {
-      // apiのコール結果で色々やる
-      console.log(resJson);
-    }
-  );
+
+      addNewTextBox(resJson.response.id, orderId);
+    });
 };
 
+function addNewTextBox(newTaskId, targetRowNo) {
+    
+  // 選択されたテキストボックスの行数取得
+  const newRowNo = targetRowNo + 1;
+
+  //追加行のinput要素のid生成
+  console.log('newRowNo: '+ newRowNo);
+  console.log('newTaskId: '+ newTaskId);
+
+  // テーブルオブジェクト取得
+  var targetTable = document.getElementById('taskTable'); // 新しい行を追加
+  var newRow = targetTable.insertRow(newRowNo);
+  var cell1 = newRow.insertCell(-1);
+  var cell2 = newRow.insertCell(-1);
+  cell1.classList.add('width-30px');
+  newRow.id = `tr${newRowNo}`
+
+  cell1.innerHTML = `<input type='checkbox' onChange=taskStatusUpdate(${newTaskId}, this.checked, ${newRowNo})>`
+  cell2.innerHTML = `<input 
+      type='text' 
+      id=text${newRowNo} 
+      value='' 
+      onkeydown=nextTextBox(${newTaskId},this) 
+      class='radius'>
+    <small 
+      class="setteings" 
+      onclick="taskDelete(${newTaskId}, ${newRowNo})">
+      •••
+    </small>`
+  
+  // 新しい行にフォーカスを移動
+  document.getElementById(`text${newRowNo}`).focus();
+}
+
+function taskStatusUpdate(taskId, isCompleted, orderId) {
+  initOption = makeInitOption( 
+    obj = {
+      id: taskId,
+      taskStatus: isCompleted
+    }
+  );
+  url = `${location.protocol}//${location.host}/tasks/update/${taskId}`;
+
+  return fetch(url, initOption)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(resJson => {
+      // チェックボックス変更時のみスタイル変更処理
+      if (isCompleted != null) {
+        const targetElm = document.taskForm.task[orderId - 1] || document.taskForm.task
+        changeTaskStyleByStatus(isCompleted, targetElm, 'completed');
+      }
+    });
+}
+
+
+function taskDelete(taskId, orderId) { 
+
+  const initOption = makeInitOption(
+    {
+      id: taskId
+    }
+  );
+  url = `${location.protocol}//${location.host}/tasks/delete/${taskId}`;
+
+  return fetch(url, initOption)
+    .then(response => {
+      return response.json();
+    })
+    .then(resJson => {
+      const deleteElm = document.getElementById(`tr${orderId}`);
+      deleteElm.parentNode.removeChild(deleteElm);
+    });
+}
+
+
+function makeInitOption(obj) {
+  return {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(obj)
+  };
+}
