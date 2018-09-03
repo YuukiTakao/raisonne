@@ -33,7 +33,7 @@ form(name='taskForm')
                   )
                 small(
                   class='setteings'
-                  onClick=`taskDelete(${task.id}, ${i})`
+                  onClick=`taskDelete(${task.id}, ${task.list_id}, ${i})`
                 ) •••
         else
           tr(id=`tr${i}`)
@@ -58,5 +58,5 @@ form(name='taskForm')
                 )
               small(
                 class='setteings'
-                onClick=`postByFetch("", ${i})`
+                onClick=`taskDelete("", ${i})`
               ) •••

@@ -12,6 +12,7 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
         }
       );
       url = `${location.protocol}//${location.host}${request}`;
+      // textBox.setAttribute('value', textBox.value);
       break;
 
     case '/tasks/update/':
@@ -34,15 +35,16 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
 
   return fetch(url, initOption)
     .then(response => {
-      return response.json();
+      if (response.ok) {
+        return response.json(); 
+      }
     })
     .then(resJson => {
-
       addNewTextBox(resJson.response.id, orderId);
     });
 };
 
-function addNewTextBox(newTaskId, targetRowNo) {
+function addNewTextBox(newTaskId, targetRowNo, listId) {
     
   // 選択されたテキストボックスの行数取得
   const newRowNo = targetRowNo + 1;
@@ -68,7 +70,7 @@ function addNewTextBox(newTaskId, targetRowNo) {
       class='radius'>
     <small 
       class="setteings" 
-      onclick="taskDelete(${newTaskId}, ${newRowNo})">
+      onclick="taskDelete(${newTaskId}, ${listId}, ${newRowNo})">
       •••
     </small>`
   
@@ -101,20 +103,26 @@ function taskStatusUpdate(taskId, isCompleted, orderId) {
 }
 
 
-function taskDelete(taskId, orderId) { 
-
+function taskDelete(taskId, listId, orderId) { 
   const initOption = makeInitOption(
     {
-      id: taskId
+      id: taskId,
+      list_id: listId,
+      target_order_id: orderId
     }
   );
   url = `${location.protocol}//${location.host}/tasks/delete/${taskId}`;
 
   return fetch(url, initOption)
     .then(response => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log('delete error');
+      }
     })
     .then(resJson => {
+      console.log(resJson);
       const deleteElm = document.getElementById(`tr${orderId}`);
       deleteElm.parentNode.removeChild(deleteElm);
     });

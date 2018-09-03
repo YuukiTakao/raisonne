@@ -39,10 +39,10 @@ task.regist = (req, res, next) => {
     list_id: param.list_id,
     order_id: param.target_order_id
   });
-  insertTask.then((ret) => {
+  insertTask.then((result) => {
     res.json({
       isSucceeded: true,
-      response:ret,
+      response:result,
     });
   })
   insertTask.error((e) => {
@@ -94,6 +94,33 @@ var makeTaskUpdateObj = (title, taskStatus) => {
 /* タスクの削除 */
 task.delete = (req, res, next) => {
   const targetId = req.params.id;
+  const param = req.body;
+  console.log(param.list_id);
+  console.log(param.target_order_id);
+  
+  /* タスク並び順の更新 */
+  const decrementTasksGteOrderId = models.tasks.decrement(
+    'order_id', // 更新内容
+    { 
+      //where:{[Op.gte]:param.target_order_id}
+      where:{
+        list_id: param.list_id,
+        order_id:{[Op.gte]: param.target_order_id}
+      }
+    } // 更新対象
+  );
+  decrementTasksGteOrderId.then(ret=> {
+    // res.json({
+    //   isSucceeded: true
+    // });
+    console.log('task order id update ok');
+  });
+  decrementTasksGteOrderId.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  });
   const delTask = models.tasks.destroy({
     where:{
       id: targetId
