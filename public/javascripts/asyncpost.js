@@ -1,6 +1,7 @@
 function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
   let initOption = "";
   let url = "";
+  console.log(textBox.value);
 
   switch (request) {
     case '/tasks/regist':
@@ -33,14 +34,16 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
   console.log(url);
   console.log(initOption);
 
-  return fetch(url, initOption)
+  fetch(url, initOption)
     .then(response => {
-      if (response.ok) {
-        return response.json(); 
-      }
+      return response.json(); 
     })
     .then(resJson => {
-      addNewTextBox(resJson.response.id, orderId);
+      if (resJson.response.id) {
+        addNewTextBox(resJson.response.id, orderId, listId);
+      } else {
+        addNewTextBox(taskId+1, orderId, listId);
+      }
     });
 };
 
@@ -131,7 +134,7 @@ function taskDelete(taskId, listId, orderId) {
 
 function makeInitOption(obj) {
   return {
-    method: "POST",
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
