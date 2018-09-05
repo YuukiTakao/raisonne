@@ -1,7 +1,12 @@
 window.onload = function(){
 
-  for(var i=0; i < document.taskForm.check.length; i++){
-    changeTaskStyleByStatus(document.taskForm.check[i].checked, document.taskForm.task[i], 'completed');
+  if (!document.taskForm.check.length){
+    changeTaskStyleByStatus(document.taskForm.check.checked, document.taskForm.task, 'completed');
+  } else {
+
+    for(var i=0; i < document.taskForm.check.length; i++){
+      changeTaskStyleByStatus(document.taskForm.check[i].checked, document.taskForm.task[i], 'completed');
+    }
   }
 }
 

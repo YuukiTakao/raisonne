@@ -1,33 +1,18 @@
-console.log('read');
-function nextForm(targetFormObj, taskId, listId, textBox){  
+console.log('read keypress.js');
+function nextTextBox(taskId, textBox){  
   if (event.keyCode == 13){
-    
-    // 選択されたテキストボックスの行数取得
-    var targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
-    var newRowNo = targetRowNo + 1;
 
-    //追加行のinput要素のid生成
-    var nextId = taskId + 1;
-    console.log('newRowNo: '+ newRowNo);
-
-    // テーブルオブジェクト取得
-    var targetTable = document.getElementById('taskTable');
-
-    // 新しい行を追加
-    var newRow = targetTable.insertRow(newRowNo);
-    var cell1 = newRow.insertCell(-1);
-    var cell2 = newRow.insertCell(-1);
-    cell1.classList.add('width-30px');
-    cell1.innerHTML = `<input type='checkbox' onChange=postByFetch('/tasks/update/', ${nextId}, null, null, this.checked)>`
-    cell2.innerHTML = `<input type='text' id=text${newRowNo} value='' size='50' onkeydown=nextForm(document.forms.taskForm,${nextId},${listId},this) class='radius'>`
-    
-    // 新しい行にフォーカスを移動
-    document.getElementById(`text${newRowNo}`).focus();
-
+    const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
+    const targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
+console.log('1の壁');
+console.log(textBox.getAttribute('value'));
+console.log(taskId);
+console.log(matchedListId);
+console.log(targetRowNo);
     if (textBox.getAttribute('value')) {
-      postByFetch('/tasks/update/', taskId, textBox.value, listId, null);
+      enterTextBox('/tasks/update/', taskId, textBox, matchedListId, targetRowNo);
     } else {
-      postByFetch('/tasks/regist', null, textBox.value, listId, null, targetRowNo);
+      enterTextBox('/tasks/regist', null, textBox, matchedListId, targetRowNo);
     }
   }
 };

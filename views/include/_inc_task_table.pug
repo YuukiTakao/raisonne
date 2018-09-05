@@ -17,7 +17,7 @@ form(name='taskForm')
                     type='checkbox'
                     name='check'
                     id=`check${task.id}`
-                    onChange=`postByFetch('/tasks/update/', ${task.id}, null, null, this.checked, ${i})`
+                    onChange=`taskStatusUpdate(${task.id}, this.checked, ${i})`
                     checked=task.completed
                   )
               td
@@ -28,12 +28,12 @@ form(name='taskForm')
                     id=`text${i}`
                     value=task.title
                     size='50'
-                    onkeydown=`nextForm(document.forms.taskForm,${task.id},${task.list_id},this)`
+                    onkeydown=`nextTextBox(${task.id}, this)`
                     class='radius'
                   )
                 small(
                   class='setteings'
-                  onClick=`postByFetch('/tasks/delete/',${task.id},null,null,null,${i})`
+                  onClick=`taskDelete(${task.id}, ${task.list_id}, ${i})`
                 ) •••
         else
           tr(id=`tr${i}`)
@@ -43,7 +43,7 @@ form(name='taskForm')
                   type='checkbox'
                   name='check'
                   id='check1'
-                  onChange='postByFetch("/tasks/update/", "", null, null, this.checked, 1)'
+                  onChange='taskStatusUpdate("", this.checked, 1)'
                   checked=this.checked
                 )
             td
@@ -53,10 +53,10 @@ form(name='taskForm')
                   name='task'
                   id='text1'
                   size='50'
-                  onkeydown=`nextForm(document.forms.taskForm,${this.value},'2',this)`
+                  onkeydown=`nextTextBox(${this.value}, this)`
                   class='radius'
                 )
               small(
                 class='setteings'
-                onClick=`postByFetch('/tasks/delete/','',null,null,null,${i})`
+                onClick=`taskDelete("", ${i})`
               ) •••
