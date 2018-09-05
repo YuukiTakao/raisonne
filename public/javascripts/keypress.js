@@ -4,7 +4,6 @@ function nextTextBox(taskId, textBox){
 
     const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
     const targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
-console.log('1の壁');
 console.log(textBox.getAttribute('value'));
 console.log(taskId);
 console.log(matchedListId);
