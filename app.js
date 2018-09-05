@@ -9,16 +9,16 @@ var app = express();
 
 // logging
 var FileStreamRotator = require('file-stream-rotator');
-var logDirectory = __dirname + '/log/access_log';
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+//var logDirectory = __dirname + '/log/access_log';
+//fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
-var accessLogStream = FileStreamRotator.getStream({
-  filename: logDirectory + '/access-%DATE%.log',
-  frequency: 'daily',
-  verbose: false,
-  date_format: "YYYY-MM-DD"
-});
-app.use(morgan('combined', {stream: accessLogStream}));
+//var accessLogStream = FileStreamRotator.getStream({
+//  filename: logDirectory + '/access-%DATE%.log',
+//  frequency: 'daily',
+//  verbose: false,
+//  date_format: "YYYY-MM-DD"
+//});
+//app.use(morgan('combined', {stream: accessLogStream}));
 
 
 // view engine setup
