@@ -4,8 +4,15 @@ table
         th List Name
     tbody  
       - var i = 0
-      each list in lists
-        tr
-          - i++
-          td
-            a(href=`/lists/${list.id}`) #{list.title}
+      if lists.length > 0
+        each list in lists
+          tr
+            - i++
+            td
+              a(href=`/lists/${list.id}`) #{list.title}
+              small(
+                class='setteings'
+              ) •••
+      else
+        p Create a new list to get started.
+        
