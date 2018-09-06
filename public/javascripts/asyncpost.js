@@ -13,7 +13,7 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
         }
       );
       url = `${location.protocol}//${location.host}${request}`;
-      // textBox.setAttribute('value', textBox.value);
+      textBox.setAttribute('value', textBox.value);
       break;
 
     case '/tasks/update/':
@@ -40,7 +40,7 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
     })
     .then(resJson => {
       if (resJson.response.id) {
-        addNewTextBox(resJson.response.id, orderId, listId);
+        addNewTextBox(resJson.response.id+1, orderId, listId);
       } else {
         addNewTextBox(taskId+1, orderId, listId);
       }

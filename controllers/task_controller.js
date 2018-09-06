@@ -82,7 +82,7 @@ task.update = (req, res, next) => {
 };
 
 
-var makeTaskUpdateObj = (title, taskStatus) => {
+const makeTaskUpdateObj = (title, taskStatus) => {
   if (title){
     return {title: title};
   } else if (taskStatus != null) {
