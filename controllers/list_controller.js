@@ -4,9 +4,9 @@ let tasks = {};
 /* タスク一覧 */
 tasks.index = (req, res, next) => {
   
-  // パラメータのIDでリストを取得
   const targetId = req.params.id;
-  
+
+  // task table
   models.tasks.findAll(
     {
       order:['order_id'],
@@ -14,17 +14,27 @@ tasks.index = (req, res, next) => {
         list_id: targetId
       }
     }
-  ).then(results=> {
-    var taskObjArray = JSON.parse(JSON.stringify(results, null, 2));
-    const responseJson = {
-      title: 'raisonne',
-      tasks: taskObjArray,
-    };
-    console.log(taskObjArray);
+  ).then(taskResults=> {
+      // list table
+    models.lists.findAll(
+      {
+        where:{
+          id: targetId
+        }
+      }
+    ).then(listResults => {
+      const listObj = JSON.parse(JSON.stringify(listResults, null, 2))[0];
+      const taskObjArray = JSON.parse(JSON.stringify(taskResults, null, 2));
 
-    // ViewにModelのデータを渡す
-    res.render('list', responseJson);
-  });
-
+      const responseJson = {
+        title: listObj.title,
+        tasks: taskObjArray,
+      };
+      console.log(taskObjArray);
+  
+      // ViewにModelのデータを渡す
+      res.render('list', responseJson); 
+    })
+  })
 }
 module.exports = tasks;
