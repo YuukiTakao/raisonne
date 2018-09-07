@@ -6,6 +6,7 @@ let task = {};
 
 /* タスクの登録 */
 task.regist = (req, res, next) => {
+  console.log(req.method);
   const param = req.body;
   console.log('target_order_id: '+param.target_order_id);
 
@@ -58,6 +59,7 @@ task.regist = (req, res, next) => {
 task.update = (req, res, next) => {
   const targetId = req.params.id;
   const updateObj = makeTaskUpdateObj(req.body.title,req.body.taskStatus);
+  console.log(req.method);
 
   const updateTask = models.tasks.update(
     updateObj, // 更新内容
@@ -102,7 +104,6 @@ task.delete = (req, res, next) => {
   const decrementTasksGteOrderId = models.tasks.decrement(
     'order_id', // 更新内容
     { 
-      //where:{[Op.gte]:param.target_order_id}
       where:{
         list_id: param.list_id,
         order_id:{[Op.gte]: param.target_order_id}
