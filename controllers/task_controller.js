@@ -14,17 +14,13 @@ task.regist = (req, res, next) => {
   const incrementTasksGteOrderId = models.tasks.increment(
     'order_id', // 更新内容
     { 
-      //where:{[Op.gte]:param.target_order_id}
       where:{
         list_id: param.list_id,
         order_id:{[Op.gte]:param.target_order_id}
       }
-    } // 更新対象
+    } 
   );
   incrementTasksGteOrderId.then(ret=> {
-    // res.json({
-    //   isSucceeded: true
-    // });
     console.log('task update ok');
   });
   incrementTasksGteOrderId.error((e) => {
@@ -111,9 +107,6 @@ task.delete = (req, res, next) => {
     } // 更新対象
   );
   decrementTasksGteOrderId.then(ret=> {
-    // res.json({
-    //   isSucceeded: true
-    // });
     console.log('task order id update ok');
   });
   decrementTasksGteOrderId.error((e) => {

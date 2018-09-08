@@ -37,11 +37,11 @@ function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
       return response.json(); 
     })
     .then(resJson => {
-      if (resJson.response.id) {
-        addNewTextBox(resJson.response.id+1, orderId, listId);
-      } else {
-        addNewTextBox(taskId+1, orderId, listId);
-      }
+     if (resJson.response.id) {
+       addNewTextBox(resJson.response.id+1, orderId, listId);
+     } else {
+       addNewTextBox(taskId+1, orderId, listId);
+     }
     });
 };
 
