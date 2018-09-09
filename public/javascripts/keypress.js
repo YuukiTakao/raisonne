@@ -1,18 +1,11 @@
 console.log('read keypress.js');
-function nextTextBox(taskId, textBox){  
+function nextTextBox(taskId, orderId){  
   if (event.keyCode == 13){
 
     const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
-    const targetRowNo = parseInt(textBox.id.match(/([0-9]+$)/)[0]);
-console.log(textBox.getAttribute('value'));
-console.log(taskId);
-console.log(matchedListId);
-console.log(targetRowNo);
-    if (textBox.getAttribute('value')) {
-      enterTextBox('/tasks/update/', taskId, textBox, matchedListId, targetRowNo);
-    } else {
-      enterTextBox('/tasks/regist', null, textBox, matchedListId, targetRowNo);
-    }
+console.log('taskId: '+taskId);
+console.log('matchedListId: '+matchedListId);
+    enterTextBox('/tasks/regist', matchedListId, orderId);
   }
 };
 

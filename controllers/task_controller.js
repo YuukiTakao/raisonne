@@ -33,7 +33,7 @@ task.regist = (req, res, next) => {
 
   /* タスク登録 */
   const insertTask = models.tasks.create({
-    title: param.title,
+    title: "",
     list_id: param.list_id,
     order_id: param.target_order_id
   });
