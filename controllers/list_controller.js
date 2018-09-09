@@ -16,7 +16,7 @@ tasks.index = (req, res, next) => {
       }
     }
   ).then(taskResults=> {
-      // list table
+    // list table
     models.lists.findAll(
       {
         where:{

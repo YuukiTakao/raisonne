@@ -7,6 +7,7 @@ let task = {};
 /* タスクの登録 */
 task.regist = (req, res, next) => {
   console.log(req.method);
+  console.log(req.body);
   const param = req.body;
   console.log('target_order_id: '+param.target_order_id);
 
@@ -14,17 +15,13 @@ task.regist = (req, res, next) => {
   const incrementTasksGteOrderId = models.tasks.increment(
     'order_id', // 更新内容
     { 
-      //where:{[Op.gte]:param.target_order_id}
       where:{
         list_id: param.list_id,
         order_id:{[Op.gte]:param.target_order_id}
       }
-    } // 更新対象
+    } 
   );
   incrementTasksGteOrderId.then(ret=> {
-    // res.json({
-    //   isSucceeded: true
-    // });
     console.log('task update ok');
   });
   incrementTasksGteOrderId.error((e) => {
@@ -60,7 +57,8 @@ task.update = (req, res, next) => {
   const targetId = req.params.id;
   const updateObj = makeTaskUpdateObj(req.body.title,req.body.taskStatus);
   console.log(req.method);
-
+  console.log(req.body);
+  console.log(updateObj);
   const updateTask = models.tasks.update(
     updateObj, // 更新内容
     { 
@@ -70,6 +68,7 @@ task.update = (req, res, next) => {
     } // 更新対象
   );
   updateTask.then(result=> {
+    console.log(result);
     res.json({
       isSucceeded: true,
       response:result,
@@ -111,9 +110,6 @@ task.delete = (req, res, next) => {
     } // 更新対象
   );
   decrementTasksGteOrderId.then(ret=> {
-    // res.json({
-    //   isSucceeded: true
-    // });
     console.log('task order id update ok');
   });
   decrementTasksGteOrderId.error((e) => {
