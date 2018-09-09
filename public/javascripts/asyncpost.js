@@ -1,56 +1,38 @@
-function enterTextBox(request,taskId,textBox,listId=null,orderId=null) {
-  let initOption = "";
-  let url = "";
-
-  switch (request) {
-    case '/tasks/regist':
-      initOption = makeInitOption(
-        {
-          title: textBox.value,
-          list_id: listId,
-          target_order_id: orderId
-        });
-      url = `${location.protocol}//${location.host}${request}`;
-      textBox.setAttribute('value', textBox.value);
-      break;
-
-    case '/tasks/update/':
-      initOption = makeInitOption(
-        {
-          id: taskId,
-          title: textBox.value,
-        }
-      );
-      url = `${location.protocol}//${location.host}${request}${taskId}`;
-      break;
-    
-    default:
-      console.log("It is an action that does not exist");
-      break;
-  } 
-
+function enterTextBox(request, listId, orderId) {
+  if (request !== '/tasks/regist') {
+    console.log("It is an action that does not exist");
+    return false;
+  }
+  const initOption = makeInitOption(
+    {
+      list_id: listId,
+      target_order_id: orderId
+    }
+  );
+  const url = `${location.protocol}//${location.host}${request}`;
   console.log(url);
   console.log(initOption);
 
   fetch(url, initOption)
     .then(response => {
-      return response.json(); 
+      return response.json();
     })
     .then(resJson => {
-     if (resJson.response.id) {
-       addNewTextBox(resJson.response.id+1, orderId, listId);
-     } else {
-       addNewTextBox(taskId+1, orderId, listId);
-     }
+      console.log('resJson.response.id: '+resJson.response.id);
+      if (resJson.response.id) {
+        addNewTextBox(resJson.response.id, listId, orderId+1);
+      }
+      return true;
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log('Call Regist API Error!')
     });
 };
 
-function addNewTextBox(newTaskId, targetRowNo, listId) {
+function addNewTextBox(newTaskId, listId, newRowNo) {
     
   // 選択されたテキストボックスの行数取得
-  const newRowNo = targetRowNo + 1;
-
-  //追加行のinput要素のid生成
   console.log('newRowNo: '+ newRowNo);
   console.log('newTaskId: '+ newTaskId);
 
@@ -63,11 +45,13 @@ function addNewTextBox(newTaskId, targetRowNo, listId) {
   newRow.id = `tr${newRowNo}`
 
   cell1.innerHTML = `<input type='checkbox' onChange=taskStatusUpdate(${newTaskId}, this.checked, ${newRowNo})>`
-  cell2.innerHTML = `<input 
+  cell2.innerHTML = 
+    `<input 
       type='text' 
       id=text${newRowNo} 
       value='' 
-      onkeydown=nextTextBox(${newTaskId},this) 
+      onkeydown=nextTextBox(${newTaskId},${newRowNo})
+      size='50px'
       class='radius'>
     <small 
       class="setteings" 

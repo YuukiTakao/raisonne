@@ -28,7 +28,7 @@ form(name='taskForm')
                     id=`text${i}`
                     value=task.title
                     size='50'
-                    onkeydown=`nextTextBox(${task.id}, this)`
+                    onkeydown=`nextTextBox(${task.id}, ${i})`
                     class='radius'
                   )
                 small(
@@ -36,6 +36,7 @@ form(name='taskForm')
                   onClick=`taskDelete(${task.id}, ${task.list_id}, ${i})`
                 ) •••
         else
+          - i++
           tr(id=`tr${i}`)
             td(class='width-30px')
               label
@@ -53,7 +54,7 @@ form(name='taskForm')
                   name='task'
                   id='text1'
                   size='50'
-                  onkeydown=`nextTextBox(${this.value}, this)`
+                  onkeydown=`nextTextBox(${this.value}, ${i})`
                   class='radius'
                 )
               small(
