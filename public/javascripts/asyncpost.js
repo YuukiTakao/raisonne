@@ -18,11 +18,9 @@ function enterTextBox(request, listId, orderId) {
       return response.json();
     })
     .then(resJson => {
-      console.log('resJson.response.id: '+resJson.response.id);
       if (resJson.response.id) {
         addNewTextBox(resJson.response.id, listId, orderId+1);
       }
-      return true;
     })
     .catch((error) => {
       console.log(error);
@@ -44,15 +42,22 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   cell1.classList.add('width-30px');
   newRow.id = `tr${newRowNo}`
 
-  cell1.innerHTML = `<input type='checkbox' onChange=taskStatusUpdate(${newTaskId}, this.checked, ${newRowNo})>`
-  cell2.innerHTML = 
+  cell1.innerHTML = 
     `<input 
-      type='text' 
-      id=text${newRowNo} 
-      value='' 
-      onkeydown=nextTextBox(${newTaskId},${newRowNo})
-      size='50px'
-      class='radius'>
+      type='checkbox' 
+      onChange=taskStatusUpdate(${newTaskId}, this.checked, ${newRowNo})
+     >`
+  cell2.innerHTML = 
+    `<label>
+      <input 
+        type='text' 
+        id=text${newRowNo} 
+        value='' 
+        onkeydown=nextTextBox(${newTaskId},this)
+        size='50px'
+        class='radius'
+      >
+    </label>  
     <small 
       class="setteings" 
       onclick="taskDelete(${newTaskId}, ${listId}, ${newRowNo})">

@@ -1,10 +1,12 @@
 console.log('read keypress.js');
-function nextTextBox(taskId, orderId){  
+function nextTextBox(taskId, textBox){
   if (event.keyCode == 13){
 
-    const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
-console.log('taskId: '+taskId);
-console.log('matchedListId: '+matchedListId);
+		// URLからリストIDを取得
+	  const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
+	  // input -> label -> td -> tr.rowIndex
+		const orderId = textBox.parentNode.parentNode.parentNode.rowIndex;
+
     enterTextBox('/tasks/regist', matchedListId, orderId);
   }
 };
