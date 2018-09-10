@@ -53,7 +53,7 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
         type='text' 
         id=text${newRowNo} 
         value='' 
-        onkeydown=nextTextBox(${newTaskId},this)
+        onkeydown=nextTextBox(this)
         size='50px'
         class='radius'
       >
