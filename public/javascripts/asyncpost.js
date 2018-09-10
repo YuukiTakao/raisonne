@@ -93,7 +93,10 @@ function taskStatusUpdate(taskId, isCompleted, orderId) {
 }
 
 
-function taskDelete(taskId, listId, orderId) { 
+function taskDelete(taskId, listId, textBox) { 
+  console.log(textBox);
+	const targetTr = textBox.parentNode.parentNode;
+	const orderId = targetTr.rowIndex;
   const initOption = makeInitOption(
     {
       id: taskId,
@@ -114,8 +117,7 @@ function taskDelete(taskId, listId, orderId) {
     })
     .then(resJson => {
       console.log(resJson);
-      const deleteElm = document.getElementById(`tr${orderId}`);
-      deleteElm.parentNode.removeChild(deleteElm);
+      targetTr.parentNode.removeChild(targetTr);
     });
 }
 

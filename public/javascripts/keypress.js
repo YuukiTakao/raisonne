@@ -2,7 +2,7 @@ console.log('read keypress.js');
 function nextTextBox(textBox){
   if (event.keyCode == 13){
 
-		// URLからリストIDを取得
+		// Get listId from URL
 	  const matchedListId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
 	  // input -> label -> td -> tr.rowIndex
 		const orderId = textBox.parentNode.parentNode.parentNode.rowIndex;
