@@ -28,7 +28,7 @@ form(name='taskForm')
                     id=`text${i}`
                     value=task.title
                     size='50'
-                    onkeydown=`nextTextBox(${task.id}, ${i})`
+                    onkeydown=`nextTextBox(${task.id}, this)`
                     class='radius'
                   )
                 small(
@@ -54,7 +54,7 @@ form(name='taskForm')
                   name='task'
                   id='text1'
                   size='50'
-                  onkeydown=`nextTextBox(${this.value}, ${i})`
+                  onkeydown=`nextTextBox(${this.value}, this)`
                   class='radius'
                 )
               small(
