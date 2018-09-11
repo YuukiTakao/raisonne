@@ -43,10 +43,12 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   newRow.id = `tr${newRowNo}`
 
   cell1.innerHTML = 
-    `<input 
-      type='checkbox' 
-      onChange=taskStatusUpdate(${newTaskId},this)
-     >`
+    `<label>
+      <input 
+        type='checkbox' 
+        onChange=taskStatusUpdate(${newTaskId},this)
+      >
+     </label>`
   cell2.innerHTML = 
     `<label>
       <input 
