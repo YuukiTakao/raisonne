@@ -45,7 +45,7 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   cell1.innerHTML = 
     `<input 
       type='checkbox' 
-      onChange=taskStatusUpdate(${newTaskId}, this.checked, ${newRowNo})
+      onChange=taskStatusUpdate(${newTaskId},this)
      >`
   cell2.innerHTML = 
     `<label>
@@ -68,11 +68,11 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   document.getElementById(`text${newRowNo}`).focus();
 }
 
-function taskStatusUpdate(taskId, isCompleted, orderId) {
+function taskStatusUpdate(taskId, checkBox) {
   initOption = makeInitOption( 
     obj = {
       id: taskId,
-      taskStatus: isCompleted
+      taskStatus: checkBox.checked
     }
   );
   url = `${location.protocol}//${location.host}/tasks/update/${taskId}`;
@@ -85,16 +85,15 @@ function taskStatusUpdate(taskId, isCompleted, orderId) {
     })
     .then(resJson => {
       // チェックボックス変更時のみスタイル変更処理
-      if (isCompleted != null) {
-        const targetElm = document.taskForm.task[orderId - 1] || document.taskForm.task
-        changeTaskStyleByStatus(isCompleted, targetElm, 'completed');
+      if (checkBox.checked != null) {
+        targetElm = checkBox.parentNode.parentNode.nextSibling.querySelector("input[type='text']")
+        changeTaskStyleByStatus(checkBox.checked, targetElm, 'completed');
       }
     });
 }
 
 
 function taskDelete(taskId, listId, textBox) { 
-  console.log(textBox);
 	const targetTr = textBox.parentNode.parentNode;
 	const orderId = targetTr.rowIndex;
   const initOption = makeInitOption(
