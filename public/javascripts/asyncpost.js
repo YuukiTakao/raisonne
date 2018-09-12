@@ -62,7 +62,7 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
     </label>  
     <small 
       class="setteings" 
-      onclick="taskDelete(${newTaskId}, ${listId}, ${newRowNo})">
+      onclick="taskDelete(${newTaskId},this)">
       •••
     </small>`
   
