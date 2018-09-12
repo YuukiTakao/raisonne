@@ -10,11 +10,3 @@ function nextTextBox(textBox){
     enterTextBox('/tasks/regist', matchedListId, orderId);
   }
 };
-
-function obj_dump(obj) {
-	var txt = '';
-	for (var one in obj){
-		txt += one + "=" + obj[one] + "\n";
-	}
-	console.log(txt);
-}
