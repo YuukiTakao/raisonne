@@ -95,9 +95,10 @@ function taskStatusUpdate(taskId, checkBox) {
 }
 
 
-function taskDelete(taskId, listId, textBox) { 
-	const targetTr = textBox.parentNode.parentNode;
-	const orderId = targetTr.rowIndex;
+function taskDelete(taskId, textBox) {
+  const targetTr = textBox.parentNode.parentNode;
+  const orderId = targetTr.rowIndex;
+  const listId = parseInt(location.pathname.match(/([0-9]+$)/)[0]);
   const initOption = makeInitOption(
     {
       id: taskId,
