@@ -28,6 +28,7 @@ form(name='taskForm')
                     value=task.title
                     size='50'
                     onkeydown=`nextTextBox(this)`
+                    onChange=`taskTitleUpdate(${task.id},this.value)`
                     class='radius'
                   )
                 small(
@@ -35,14 +36,12 @@ form(name='taskForm')
                   onClick=`taskDelete(${task.id},this)`
                 ) •••
         else
-          - i++
-          tr(id=`tr${i}`)
+          tr
             td(class='width-30px')
               label
                 input(
                   type='checkbox'
                   name='check'
-                  id='check1'
                   onChange='taskStatusUpdate("",this)'
                   checked=this.checked
                 )
@@ -53,6 +52,7 @@ form(name='taskForm')
                   name='task'
                   size='50'
                   onkeydown=`nextTextBox(this)`
+                  onChange=`taskTitleUpdate("",this.value)`
                   class='radius'
                 )
               small(

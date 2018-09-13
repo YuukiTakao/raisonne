@@ -53,6 +53,7 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
         type='text' 
         value='' 
         onkeydown=nextTextBox(this)
+        onChange=taskTitleUpdate(${newTaskId},this.value)
         size='50px'
         class='radius'
       >
@@ -66,6 +67,30 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   // 新しい行にフォーカスを移動
   newRow.querySelector('input[type=text]').focus();
 }
+
+
+function taskTitleUpdate(taskId, title) {
+  console.log(title);
+  initOption = makeInitOption( 
+    obj = {
+      id: taskId,
+      title: title
+    }
+  );
+  url = `${location.protocol}//${location.host}/tasks/update/${taskId}`;
+
+  return fetch(url, initOption)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(resJson => {
+      // チェックボックス変更時のみスタイル変更処理
+      console.log(resJson);
+    });
+}
+
 
 function taskStatusUpdate(taskId, checkBox) {
   initOption = makeInitOption( 
