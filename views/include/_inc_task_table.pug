@@ -10,7 +10,7 @@ form(name='taskForm')
         if tasks.length > 0
           each task in tasks
             - i++
-            tr(id=`tr${i}`)
+            tr
               td(class='width-30px')
                 label
                   input(
@@ -25,7 +25,6 @@ form(name='taskForm')
                   input(
                     type='text'
                     name='task'
-                    id=`text${i}`
                     value=task.title
                     size='50'
                     onkeydown=`nextTextBox(this)`
@@ -52,7 +51,6 @@ form(name='taskForm')
                 input(
                   type='text'
                   name='task'
-                  id='text1'
                   size='50'
                   onkeydown=`nextTextBox(this)`
                   class='radius'

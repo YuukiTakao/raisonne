@@ -40,8 +40,6 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
   var cell1 = newRow.insertCell(-1);
   var cell2 = newRow.insertCell(-1);
   cell1.classList.add('width-30px');
-  newRow.id = `tr${newRowNo}`
-
   cell1.innerHTML = 
     `<label>
       <input 
@@ -53,7 +51,6 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
     `<label>
       <input 
         type='text' 
-        id=text${newRowNo} 
         value='' 
         onkeydown=nextTextBox(this)
         size='50px'
@@ -67,7 +64,7 @@ function addNewTextBox(newTaskId, listId, newRowNo) {
     </small>`
   
   // 新しい行にフォーカスを移動
-  document.getElementById(`text${newRowNo}`).focus();
+  newRow.querySelector('input[type=text]').focus();
 }
 
 function taskStatusUpdate(taskId, checkBox) {
