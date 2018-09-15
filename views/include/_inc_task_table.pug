@@ -1,61 +1,60 @@
-form(name='taskForm')
-  table(id='taskTable')
-      thead
-        tr
-          th(class='width-30px')
-          th Task Name
-      tbody
-        - var i = 0
-        //-  チェックボックスがチェックされている場合、テキストボックスにcompletedクラスを追加する
-        if tasks.length > 0
-          each task in tasks
-            - i++
-            tr
-              td(class='width-30px')
-                label
-                  input(
-                    type='checkbox'
-                    name='check'
-                    id=`check${task.id}`
-                    onChange=`taskStatusUpdate(${task.id},this)`
-                    checked=task.completed
-                  )
-              td
-                label
-                  input(
-                    type='text'
-                    name='task'
-                    value=task.title
-                    size='50'
-                    onkeydown=`nextTextBox(this)`
-                    onChange=`taskTitleUpdate(${task.id},this.value)`
-                    class='radius'
-                  )
-                small(
-                  class='setteings'
-                  onClick=`taskDelete(${task.id},this)`
-                ) •••
-        else
+table(id='taskTable')
+    thead
+      tr
+        th(class='width-30px')
+        th Task Name
+    tbody
+      - var i = 0
+      //-  チェックボックスがチェックされている場合、テキストボックスにcompletedクラスを追加する
+      if tasks.length > 0
+        each task in tasks
+          - i++
           tr
             td(class='width-30px')
               label
                 input(
                   type='checkbox'
                   name='check'
-                  onChange='taskStatusUpdate("",this)'
-                  checked=this.checked
+                  id=`check${task.id}`
+                  onChange=`taskStatusUpdate(${task.id},this)`
+                  checked=task.completed
                 )
             td
               label
                 input(
                   type='text'
                   name='task'
+                  value=task.title
                   size='50'
                   onkeydown=`nextTextBox(this)`
-                  onChange=`taskTitleUpdate("",this.value)`
+                  onChange=`taskTitleUpdate(${task.id},this.value)`
                   class='radius'
                 )
               small(
                 class='setteings'
-                onClick=`taskDelete(null,this)`
+                onClick=`taskDelete(${task.id},this)`
               ) •••
+      else
+        tr
+          td(class='width-30px')
+            label
+              input(
+                type='checkbox'
+                name='check'
+                onChange='taskStatusUpdate("",this)'
+                checked=this.checked
+              )
+          td
+            label
+              input(
+                type='text'
+                name='task'
+                size='50'
+                onkeydown=`nextTextBox(this)`
+                onChange=`taskTitleUpdate("",this.value)`
+                class='radius'
+              )
+            small(
+              class='setteings'
+              onClick=`taskDelete(null,this)`
+            ) •••
