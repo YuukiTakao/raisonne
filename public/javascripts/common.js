@@ -1,11 +1,11 @@
 window.onload = function(){
 
-  if (!document.taskForm.check.length){
-    changeTaskStyleByStatus(document.taskForm.check.checked, document.taskForm.task, 'completed');
+  if (!document.getElementsByName('check').length){
+    changeTaskStyleByStatus(document.getElementsByName('check').checked, document.getElementsByName('task'), 'completed');
   } else {
 
-    for(var i=0; i < document.taskForm.check.length; i++){
-      changeTaskStyleByStatus(document.taskForm.check[i].checked, document.taskForm.task[i], 'completed');
+    for(var i=0; i < document.getElementsByName('check').length; i++){
+      changeTaskStyleByStatus(document.getElementsByName('check')[i].checked, document.getElementsByName('task')[i], 'completed');
     }
   }
 }
