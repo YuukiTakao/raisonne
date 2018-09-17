@@ -1,8 +1,8 @@
 const models = require('../models/')
-let tasks = {};
+let lists = {};
 
 /* タスク一覧 */
-tasks.index = (req, res, next) => {
+lists.index = (req, res, next) => {
   console.log(req.method);
   
   const targetId = req.params.id;
@@ -38,4 +38,36 @@ tasks.index = (req, res, next) => {
     })
   })
 }
-module.exports = tasks;
+
+
+/* タスクの登録 */
+lists.regist = (req, res, next) => {
+  console.log(req.method);
+  console.log(req.body);
+  const param = req.body;
+  console.log('target_order_id: '+param.target_order_id);
+
+  const insertList = models.lists.create({
+    // title: "dummy",
+    // space_id: param.space_id,
+    // progress_rate: param.pregress_rate
+    title: "dummy",
+    space_id: 1,
+    progress_rate: 77,
+  });
+  insertList.then((result) => {
+    res.json({
+      isSucceeded: true,
+      response:result,
+    });
+  })
+  insertList.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  })
+}
+
+
+module.exports = lists;

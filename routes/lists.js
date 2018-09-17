@@ -5,6 +5,7 @@ const logger = require('../config/logger.js');
 const list_controller = require('../controllers/list_controller');
 
 router.get('/:id', list_controller.index);
+router.post('/regist', list_controller.regist);
 
 
 module.exports = router;
