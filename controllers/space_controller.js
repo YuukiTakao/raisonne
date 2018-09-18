@@ -4,7 +4,17 @@ let lists = {};
 /* リスト一覧 */
 lists.index = (req, res, next) => {
 
-  models.lists.findAll().then(results=> {
+  const targetId = req.params.id;
+
+  models.lists.findAll(
+    {
+      where:{
+        space_id: targetId
+      }
+    }
+  ).then(results=> {
+
+
     var listsObjArray = JSON.parse(JSON.stringify(results, null, 2));
     
     const responseJson = {

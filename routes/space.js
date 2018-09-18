@@ -14,7 +14,7 @@ const models = require('../models');
 const space_controller = require('../controllers/space_controller');
 
 /* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
-router.get('/', space_controller.index);
+router.get('/:id', space_controller.index);
 
 
 module.exports = router;

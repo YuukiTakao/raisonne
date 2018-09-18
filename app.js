@@ -38,7 +38,7 @@ const taskRouter = require('./routes/tasks.js');
 const usersRouter = require('./routes/users.js');
 
 // mapping
-app.use('/', spaceRouter);
+app.use('/spaces', spaceRouter);
 app.use('/lists', listRouter);
 app.use('/tasks', taskRouter);
 app.use('/users', usersRouter);
