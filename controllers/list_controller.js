@@ -51,9 +51,9 @@ lists.regist = (req, res, next) => {
     // title: "dummy",
     // space_id: param.space_id,
     // progress_rate: param.pregress_rate
-    title: "dummy",
-    space_id: 1,
-    progress_rate: 77,
+    title: '',
+    space_id: param.space_id,
+    progress_rate: 0,
   });
   insertList.then((result) => {
     res.json({
