@@ -4,8 +4,14 @@ block content
   
   header 
     a(href='javascript:history.back();' class='back_button') < #{title}
-    
-  h1= title
+
+  input(
+    type='text'
+    name='list'
+    value=`${title}`
+    size='50'
+    class='list_title'
+  )
   
   section#top
   .content.top

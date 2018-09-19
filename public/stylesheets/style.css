@@ -99,3 +99,11 @@ input.radius {
 #listTable {
   clear:both;
 }
+
+.list_title {
+  border-width:0px;
+  border-style:None;
+  background-color: rgba(0,0,0,0);
+  font-size: 36px;
+  margin: 15px 0 15px 0;
+}
