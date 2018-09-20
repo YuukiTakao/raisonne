@@ -12,6 +12,7 @@ table(id='listTable')
               a(href=`/lists/${list.id}`) #{list.title}
               small(
                 class='setteings'
+                onClick=`listDelete(${list.id},this)`
               ) •••
       else
         p Create a new list to get started.
