@@ -40,7 +40,7 @@ lists.index = (req, res, next) => {
 }
 
 
-/* タスクの登録 */
+/* リストの登録 */
 lists.regist = (req, res, next) => {
   console.log(req.method);
   console.log(req.body);
@@ -67,6 +67,44 @@ lists.regist = (req, res, next) => {
       message: e.message
     });
   })
+}
+
+
+/* リストの更新 */
+lists.update = (req, res, next) => {
+  const targetId = req.params.id;
+  const updateObj = makeListUpdateObj(req.body.title);
+  console.log(req.method);
+  console.log(req.body);
+  console.log(updateObj);
+  const updateList = models.lists.update(
+    updateObj, // 更新内容
+    {
+      where: {
+        id: targetId
+      }
+    } // 更新対象
+  );
+  updateList.then(result=> {
+    console.log(result);
+    res.json({
+      isSucceeded: true,
+      response:result,
+    });
+  })
+  updateList.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  })
+};
+
+
+const makeListUpdateObj = (title) => {
+  if (title){
+    return {title: title};
+  };
 }
 
 
