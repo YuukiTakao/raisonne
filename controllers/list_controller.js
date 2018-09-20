@@ -108,4 +108,28 @@ const makeListUpdateObj = (title) => {
 }
 
 
+
+/* リストの削除 */
+lists.delete = (req, res, next) => {
+  const targetId = req.params.id;
+  
+  const delList = models.lists.destroy({
+    where:{
+      id: targetId
+    }
+  })
+  delList.then((result) => {
+    res.json({
+      isSucceeded: true,
+      response:result
+    });
+  })
+  delList.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  })
+}
+
 module.exports = lists;
