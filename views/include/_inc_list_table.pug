@@ -6,8 +6,8 @@ table(id='listTable')
       - var i = 0
       if lists.length > 0
         each list in lists
-          tr
-            - i++
+          - i++
+          tr(id=`row${i}`)
             td
               a(href=`/lists/${list.id}`) #{list.title}
               small(

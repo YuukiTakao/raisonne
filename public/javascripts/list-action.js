@@ -77,7 +77,6 @@ function listDelete(listId, textBox) {
   const initOption = makeInitOption(
     {
       id: listId,
-      list_id: listId,
     }
   );
   url = `${location.protocol}//${location.host}/lists/delete/${listId}`;
@@ -88,10 +87,12 @@ function listDelete(listId, textBox) {
       if (response.ok) {
         return response.json();
       } else {
-        console.log('delete error');
+        console.log('delete api error');
       }
     })
     .then(resJson => {
+      const targetTr = textBox.parentNode.parentNode;
+      targetTr.parentNode.removeChild(targetTr);
       console.log(resJson);
     });
 }
