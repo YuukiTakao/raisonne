@@ -18,8 +18,8 @@ function createList(request) {
       return response.json();
     })
     .then(resJson => {
-      // TODO テーブルに追加行を挿入する
-      console.log(resJson);
+      // listテーブルに追加行を挿入する
+      addListTableRow(resJson.response.id);
     })
     .catch((error) => {
       console.log(error);
@@ -31,6 +31,22 @@ function createList(request) {
 function createNewList() {
   
   createList('/lists/regist');
+}
+
+function addListTableRow(newListId) {
+    
+  // テーブルオブジェクト取得
+  const targetTable = document.getElementById('listTable'); // 新しい行を追加
+  const newRowNo = targetTable.rows.length;
+  var newRow = targetTable.insertRow(newRowNo);
+  var cell1 = newRow.insertCell(-1);
+  cell1.classList.add('width-30px');
+  cell1.innerHTML = 
+   `<a href=/lists/${newListId}></a> 
+    <small
+      class='setteings'
+      onClick=listDelete(${newListId},this)>
+       ••• </small>`
 }
 
 
