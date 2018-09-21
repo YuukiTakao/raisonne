@@ -107,3 +107,7 @@ input.radius {
   font-size: 36px;
   margin: 15px 0 15px 0;
 }
+
+.container{
+  width: 900px;
+}
