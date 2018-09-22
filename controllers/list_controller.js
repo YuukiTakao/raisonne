@@ -102,7 +102,7 @@ lists.update = (req, res, next) => {
 
 
 const makeListUpdateObj = (title) => {
-  if (title){
+  if (title !== null){
     return {title: title};
   };
 }

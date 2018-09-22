@@ -20,6 +20,7 @@ function createList(request) {
     .then(resJson => {
       // listテーブルに追加行を挿入する
       addListTableRow(resJson.response.id);
+      window.location.href = `${location.protocol}//${location.host}/lists/${resJson.response.id}`;
     })
     .catch((error) => {
       console.log(error);
@@ -43,10 +44,9 @@ function addListTableRow(newListId) {
   cell1.classList.add('width-30px');
   cell1.innerHTML = 
    `<a href=/lists/${newListId}></a> 
-    <small
-      class='setteings'
-      onClick=listDelete(${newListId},this)>
-       ••• </small>`
+    <small class='setteings' onClick=listDelete(${newListId},this)>
+       ••• 
+    </small>`
 }
 
 
@@ -59,6 +59,7 @@ function listTitleUpdate(newTitle) {
     }
   );
   url = `${location.protocol}//${location.host}/lists/update/${listId}`;
+  console.log(initOption);
 
   return fetch(url, initOption)
     .then(response => {
