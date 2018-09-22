@@ -111,3 +111,9 @@ input.radius {
 .container{
   width: 900px;
 }
+
+::placeholder {
+  color: rgb(150,150,150);
+  font-size: 20px;
+  font-style: italic;
+}
