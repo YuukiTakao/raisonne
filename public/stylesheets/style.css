@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: skyblue;
 }
 
 a {
@@ -12,7 +13,7 @@ table {
 }
 
 table th, table td {
-  border: dashed 1px orange;
+  border: dashed 1px gray;
   height: 28px;
   
 }
@@ -83,16 +84,16 @@ input.radius {
   float: right;
   font-size: 16px;
   padding: 0.3em 1em;
-  margin: 0 0 20px;
+  margin: 10px 10px 20px;
   text-decoration: none;
-  color: #67c5ff;
-  border: solid 2px #67c5ff;
+  color: #FF6699;
+  border: solid 2px #FF6699;
   border-radius: 3px;
   transition: .4s;
 }
 
 .square_btn:hover {
-  background: #67c5ff;
+  background: #FF6699;
   color: white;
 }
 
@@ -110,6 +111,28 @@ input.radius {
 
 .container{
   width: 900px;
+  height: 500px;
+}
+
+.main{
+  background-color: whitesmoke;
+  border-radius: 8px;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+  width: 600px;
+  /* border: solid 2px gray; */
+  float: right;
+  margin-left: 20px;
+}
+
+.leftnavi{
+  border-radius: 8px;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+  background-color: whitesmoke;
+  /* border: solid 2px gray; */
+  border-collapse: collapse;
+  float: left;
+  width: 270px;
+  height: 450px;
 }
 
 ::placeholder {

@@ -1,14 +1,23 @@
 extends layout
 
 block content
+
+  h1=title
+
   div(class='container')
-    h1(style='display:inline-block')=title
-    header 
-      input(type='button' value='Create New List' onClick='createNewList()' class='square_btn') 
-    
+    div(class='leftnavi')
+      include ./include/_inc_space_table.pug
 
-    section#top
-    .content.top
+    div(class='main')
+      header
+        input(type='button'
+              value='Create New List'
+              onClick='createNewList()'
+              class='square_btn'
+        )
 
-    include ./include/_inc_list_table.pug
+      section#top
+      .content.top
+
+      include ./include/_inc_list_table.pug
   
