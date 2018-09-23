@@ -40,7 +40,7 @@ lists.index = (req, res, next) => {
 }
 
 
-/* リストの登録 */
+/* Create list */
 lists.regist = (req, res, next) => {
   console.log(req.method);
   console.log(req.body);

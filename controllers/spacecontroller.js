@@ -1,12 +1,11 @@
 const models = require('../models/')
-let lists = {};
+let spaces = {};
 
 /* リスト一覧 */
-lists.index = (req, res, next) => {
+spaces.index = (req, res, next) => {
 
   const targetId = req.params.id;
   models.spaces.findAll().then(spaceResults => {
-    
     models.lists.findAll(
       {
         where:{
@@ -24,7 +23,29 @@ lists.index = (req, res, next) => {
       // Data binding to View.
       res.render('space', responseJson);
     });
-
   });
 }
-module.exports = lists;
+
+
+/* Create space */
+lists.regist = (req, res, next) => {
+  console.log(req.method);
+  console.log(req.body);
+  const param = req.body;
+  const insertSpace = models.spaces.create({
+    title: '',
+  });
+  insertSpace.then((result) => {
+    res.json({
+      isSucceeded: true,
+      response:result,
+    });
+  })
+  insertSpace.error((e) => {
+    res.json({
+      isSucceeded: false,
+      message: e.message
+    });
+  })
+}
+module.exports = spaces;
