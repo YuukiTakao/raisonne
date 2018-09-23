@@ -21,9 +21,6 @@ function createList(request) {
       // Insert additional line in list table.
       addListTableRow(resJson.response.id);
       window.location.href = `${location.protocol}//${location.host}/lists/${resJson.response.id}`;
-
-      // Focus on the list name.
-      elementFocused('title');
     })
     .catch((error) => {
       console.log(error);
