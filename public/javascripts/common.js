@@ -1,5 +1,7 @@
 window.onload = function(){
 
+  elementFocused('title');
+ 
   if (!document.getElementsByName('check').length){
     changeTaskStyleByStatus(document.getElementsByName('check').checked, document.getElementsByName('task'), 'completed');
   } else {
@@ -17,10 +19,22 @@ window.onload = function(){
  * @param {string} addClass 
  */
 function changeTaskStyleByStatus(isCompleted, targetElem, addClass){
-
-  if(isCompleted){
-    targetElem.classList.add(addClass);
-  }else {
-    targetElem.classList.remove(addClass);
+ 
+  if (targetElem.classList) {
+    if(isCompleted){
+      targetElem.classList.add(addClass);
+    }else {
+      targetElem.classList.remove(addClass);
+    }
   }
 };
+
+function elementFocused(idName) {
+  const targetElm = document.getElementById(idName);
+  if(targetElm) {
+    if (targetElm.value === ""){
+      targetElm.focus();
+    }
+  }
+
+}

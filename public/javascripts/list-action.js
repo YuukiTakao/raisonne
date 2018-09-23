@@ -21,6 +21,7 @@ function createList(request) {
       // listテーブルに追加行を挿入する
       addListTableRow(resJson.response.id);
       window.location.href = `${location.protocol}//${location.host}/lists/${resJson.response.id}`;
+      elementFocused('title');
     })
     .catch((error) => {
       console.log(error);
