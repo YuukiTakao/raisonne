@@ -18,9 +18,11 @@ function createList(request) {
       return response.json();
     })
     .then(resJson => {
-      // listテーブルに追加行を挿入する
+      // Insert additional line in list table.
       addListTableRow(resJson.response.id);
       window.location.href = `${location.protocol}//${location.host}/lists/${resJson.response.id}`;
+
+      // Focus on the list name.
       elementFocused('title');
     })
     .catch((error) => {
@@ -37,7 +39,7 @@ function createNewList() {
 
 function addListTableRow(newListId) {
     
-  // テーブルオブジェクト取得
+  // Get table object.
   const targetTable = document.getElementById('listTable'); // 新しい行を追加
   const newRowNo = targetTable.rows.length;
   var newRow = targetTable.insertRow(newRowNo);
@@ -69,7 +71,6 @@ function listTitleUpdate(newTitle) {
       }
     })
     .then(resJson => {
-      // チェックボックス変更時のみスタイル変更処理
       console.log(resJson);
     });
 }

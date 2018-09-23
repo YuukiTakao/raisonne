@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const logger = require('../config/logger.js');
-const task_controller = require('../controllers/task_controller');
+const taskcontroller = require('../controllers/taskcontroller');
 
-router.post('/regist', task_controller.regist);
-router.post('/update/:id', task_controller.update);
-router.post('/delete/:id', task_controller.delete);
+router.post('/regist', taskcontroller.regist);
+router.post('/update/:id', taskcontroller.update);
+router.post('/delete/:id', taskcontroller.delete);
 
 module.exports = router;
 

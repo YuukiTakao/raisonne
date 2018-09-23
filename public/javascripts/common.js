@@ -1,6 +1,5 @@
 window.onload = function(){
 
-  elementFocused('title');
  
   if (!document.getElementsByName('check').length){
     changeTaskStyleByStatus(document.getElementsByName('check').checked, document.getElementsByName('task'), 'completed');

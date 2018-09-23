@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const logger = require('../config/logger.js');
-const list_controller = require('../controllers/list_controller');
+const listcontroller = require('../controllers/listcontroller');
 
-router.get('/:id', list_controller.index);
-router.post('/regist', list_controller.regist);
-router.post('/update/:id', list_controller.update);
-router.post('/delete/:id', list_controller.delete);
+router.get('/:id', listcontroller.index);
+router.post('/regist', listcontroller.regist);
+router.post('/update/:id', listcontroller.update);
+router.post('/delete/:id', listcontroller.delete);
 
 module.exports = router;
 

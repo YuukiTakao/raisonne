@@ -11,10 +11,10 @@ const logger = require('../config/logger.js');
 
 const models = require('../models');
 
-const space_controller = require('../controllers/space_controller');
+const spacecontroller = require('../controllers/spacecontroller');
 
 /* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
-router.get('/:id', space_controller.index);
+router.get('/:id', spacecontroller.index);
 
 
 module.exports = router;
