@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var lists = sequelize.define('lists', {
+  const lists = sequelize.define('lists', {
     title: DataTypes.STRING,
     progress_rate: DataTypes.INTEGER,
     space_id: DataTypes.INTEGER,
