@@ -37,7 +37,7 @@ input[type=text] {
 
 input.radius {
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: none;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0px;
@@ -80,7 +80,6 @@ input.radius {
   font-size: 36px;
   margin: 15px 0 15px 0;
 }
-
 
 .main{
   background-color: whitesmoke;
