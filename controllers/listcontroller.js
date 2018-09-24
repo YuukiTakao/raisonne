@@ -3,8 +3,6 @@ let lists = {};
 
 /* タスク一覧 */
 lists.index = (req, res, next) => {
-  console.log(req.method);
-  
   const targetId = req.params.id;
 
   // task table
