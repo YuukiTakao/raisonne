@@ -28,7 +28,7 @@ spaces.index = (req, res, next) => {
 
 
 /* Create space */
-lists.regist = (req, res, next) => {
+spaces.regist = (req, res, next) => {
   console.log(req.method);
   console.log(req.body);
   const param = req.body;
@@ -38,7 +38,7 @@ lists.regist = (req, res, next) => {
   insertSpace.then((result) => {
     res.json({
       isSucceeded: true,
-      response:result,
+      response: result,
     });
   })
   insertSpace.error((e) => {
@@ -48,4 +48,5 @@ lists.regist = (req, res, next) => {
     });
   })
 }
+
 module.exports = spaces;
