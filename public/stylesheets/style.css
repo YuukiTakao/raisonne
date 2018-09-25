@@ -2,6 +2,21 @@ a {
   color: rgba(141, 140, 141, 0.925);
 }
 
+.back_button {
+	color: #c400e6;
+	font-size: 100%;
+  font-style: italic;
+	font-weight: bold;
+  opacity: 0.5;
+  text-decoration: back;
+}
+
+.back_button:hover {
+	color: #d876f0;
+  opacity: 1.0;
+  text-decoration: underline;
+}
+
 body {
   background-color: skyblue;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -16,6 +31,10 @@ body {
 .container {
   height: 500px;
   width: 900px;
+}
+
+.h {
+  color: #999;
 }
 
 input[type=checkbox] {
@@ -44,20 +63,6 @@ input.radius {
   padding: 0px;
 }
 
-.back_button {
-	color: #c400e6;
-	font-size: 100%;
-  font-style: italic;
-	font-weight: bold;
-  opacity: 0.5;
-  text-decoration: back;
-}
-
-.back_button:hover {
-	color: #d876f0;
-  opacity: 1.0;
-  text-decoration: underline;
-}
 
 .leftnavi{
   background-color: whitesmoke;
@@ -88,6 +93,20 @@ input.radius {
   float: right;
   margin-left: 20px;
   width: 600px;
+}
+
+.menu_button {
+  height: 30px;
+  text-align: center;
+  top: 0;
+  vertical-align: middle;
+  width: 270px;
+}
+.menu_button:hover {
+  top: 0;
+}
+.menu_button:active {
+  top: 1px;
 }
 
 table {
