@@ -9,11 +9,8 @@ const logger = require('../config/logger.js');
 // logger.error('error log'); // level 50
 // logger.fatal('fatal log'); // level 60
 
-const models = require('../models');
-
 const spacecontroller = require('../controllers/spacecontroller');
 
-/* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
 router.get('/:id', spacecontroller.index);
 router.post('/regist', spacecontroller.regist);
 router.post('/update/:id', spacecontroller.update);
