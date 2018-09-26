@@ -32,7 +32,7 @@ spaces.regist = (req, res, next) => {
   console.log(req.method);
   console.log(req.body);
   const param = req.body;
-  const insertSpace = models.spaces.create({title: ''});
+  const insertSpace = models.spaces.create({title: param.title});
   insertSpace.then((result) => {
     res.json({
       isSucceeded: true,
@@ -51,7 +51,6 @@ spaces.regist = (req, res, next) => {
 spaces.update = (req, res, next) => {
   const targetId = req.params.id;
   const updateObj = makeUpdateObj(req.body.title);
-  console.log(req.method);
   console.log(req.body);
   console.log(updateObj);
   const updateSpace = models.spaces.update(
