@@ -15,6 +15,9 @@ const spacecontroller = require('../controllers/spacecontroller');
 
 /* ルートディレクトリにGETメソッドでリクエストが来た場合の処理　*/
 router.get('/:id', spacecontroller.index);
+router.post('/regist', spacecontroller.regist);
+router.post('/update/:id', spacecontroller.update);
+router.post('/delete/:id', spacecontroller.delete);
 
 
 module.exports = router;
