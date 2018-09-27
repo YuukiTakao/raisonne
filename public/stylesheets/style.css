@@ -33,10 +33,6 @@ body {
   width: 900px;
 }
 
-.h {
-  color: #999;
-}
-
 input[type=checkbox] {
   transform: scale(1.3);
 }
@@ -47,13 +43,6 @@ input[type=text] {
   vertical-align: middle;
 }
 
-.setteings {
-  color:gray;
-  display: inline;
-  float: right;
-  padding: 5px;
-}
-
 input.radius {
   border: none;
   border-radius: 4px;
@@ -62,7 +51,6 @@ input.radius {
   margin: 0px;
   padding: 0px;
 }
-
 
 .leftnavi{
   background-color: whitesmoke;
@@ -96,17 +84,25 @@ input.radius {
 }
 
 .menu_button {
+  color: #999;
+  font-size: 14px;
   height: 30px;
-  text-align: center;
+  padding: 20px 0 0 20px;
   top: 0;
   vertical-align: middle;
   width: 270px;
 }
+
+.menu_button:active {
+  top: 1px;
+}
 .menu_button:hover {
   top: 0;
 }
-.menu_button:active {
-  top: 1px;
+
+.menu_child {
+  text-align: left;
+  padding: 20px;
 }
 
 table {
@@ -129,6 +125,13 @@ table tr td {
   color: rgb(150,150,150);
   font-size: 20px;
   font-style: italic;
+}
+
+.setteings {
+  color:gray;
+  display: inline;
+  float: right;
+  padding: 5px;
 }
 
 .square_btn {

@@ -1,6 +1,7 @@
-each space in spaces
-  a(href=`/spaces/${space.id}`) #{space.title}
-
 div(class='workspace_menu')
   div(class='menu_button')
-    p(class='h') + New Workspace
+    a(href='') + New Workspace
+
+each space in spaces
+  div(class='menu_child')
+    a(href=`/spaces/${space.id}`) #{space.title}
