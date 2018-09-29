@@ -25,12 +25,16 @@ body {
 
 #close {
   cursor: pointer;
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  text-align: center;
-  line-height: 40px;
-  margin: 15px auto 0;
+  width: 50px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: 0;
+  outline: 0;
 }
 
 .completed {
@@ -49,7 +53,6 @@ input[type=checkbox] {
 
 input[type=text] {
   display: inline;
-  padding: 0px;
   vertical-align: middle;
 }
 
@@ -100,6 +103,7 @@ input.radius {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 1;
 }
 
 #mask.hidden {
@@ -110,7 +114,7 @@ input.radius {
   color: #444444;
   font-size: 14px;
   height: 30px;
-  padding: 20px 0 0 20px;
+  /* padding: 20px 0 0 20px; */
   top: 0;
   vertical-align: middle;
   width: 270px;
@@ -130,14 +134,18 @@ input.radius {
 
 #modal {
   background: #fff;
-  width: 300px;
-  padding: 20px;
   border-radius: 4px;
-  position: absolute;
-  top: 40px;
+  height: 100px;
   left: 0;
-  right: 0;
   margin: 0 auto;
+  padding: 20px;
+  position: absolute;
+  text-align: center;
+  top: 40px;
+  transition: .8s;
+  right: 0;
+  width: 400px;
+  z-index: 2;
 }
 
 #modal.hidden {
@@ -145,8 +153,8 @@ input.radius {
 }
 
 #modal p {
-  line-height: 2.0;
-  margin: 0 0 10px;
+  margin: 0;
+  text-align: right;
 }
 
 table {
@@ -165,6 +173,10 @@ table tr td {
   width: 960px;
 }
 
+#open {
+  text-align: center;
+}
+
 ::placeholder {
   color: rgb(150,150,150);
   font-size: 20px;
@@ -176,6 +188,17 @@ table tr td {
   display: inline;
   float: right;
   padding: 5px;
+}
+
+.space_text {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  display: inline;
+  height: 35px;
+  margin: 50px;
+  padding: 0 15px;
+  top: 40px;
+  width: 300px;
 }
 
 .square_btn {
