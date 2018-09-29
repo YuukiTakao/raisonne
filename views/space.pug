@@ -11,14 +11,21 @@ block content
 
     div(class='main')
       header
-        input(type='button'
-              value='Create New List'
-              onClick='createNewList()'
-              class='square_btn'
+        input(
+          type='button'
+          value='Create New List'
+          onClick='createNewList()'
+          class='square_btn'
         )
 
       section#top
       .content.top
 
       include ./include/_inc_list_table.pug
-  
+
+    div(id='mask' class='hidden') 
+
+    div(id='modal' class='hidden') 
+      p text box
+      div(id='close')
+        p Close

@@ -26,11 +26,11 @@ describe('stack', () => {
   test('pushAndTop', () => {
     stack.push(1);
     expect(false).toBe(stack.isEmpty());
-    expect(1).toBe(stack.top());
+    expect(1).toBe(stackutop());
   });
 
   test('emptyPop'), () => {
-      console.log('YEAH!');
+    console.log('YEAH!');
     stack.pop();
     try {
       stack.pop();
