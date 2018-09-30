@@ -196,7 +196,7 @@ table tr td {
   display: inline;
   height: 35px;
   margin: 50px;
-  padding: 0 15px;
+  padding: 0 15px 0 0;
   top: 40px;
   width: 300px;
 }
