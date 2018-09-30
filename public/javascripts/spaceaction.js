@@ -1,13 +1,14 @@
-function createSpace(request, newTitle) {
+function createSpace(request, textBox) {
   console.log('call spaceaction.js');
   console.log(request);
   if (request !== '/spaces/regist') {
     console.log("It is an invalid action");
     return false;
   }
+  console.log(textBox);
   const initOption = makeInitOption(
     {
-      title: newTitle,
+      title:  textBox.value,
     }
   );
   const url = `${location.protocol}//${location.host}${request}`;
@@ -28,9 +29,15 @@ function createSpace(request, newTitle) {
 };
 
 
-function createNewSpace(newTitle) {
+function createNewSpace(textBox) {
   
-  createSpace('/spaces/regist', newTitle);
+  if (event.keyCode == 13){
+
+    if (textBox.value) {
+      createSpace('/spaces/regist', textBox);
+    }
+    document.getElementById('close').click();
+  }
 }
 
 function addSpaceTableRow(newSpaceId) {

@@ -28,8 +28,6 @@ window.onload = function(){
   });
 
   mask.addEventListener('click', function() {
-    // modal.className = 'hidden';
-    // mask.className = 'hidden';
     close.click();
   });
 }
