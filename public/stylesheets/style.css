@@ -136,8 +136,10 @@ input.radius {
 }
 
 .menu_child {
+  margin: 12px 0 12px 5px;
   text-align: left;
-  padding: 15px 0 0 20px;
+  top: 0;
+  vertical-align: middle;
 }
 
 #modal {
