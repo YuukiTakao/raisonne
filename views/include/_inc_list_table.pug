@@ -1,10 +1,10 @@
-table(id='listTable')
-    thead
-      tr 
-        th List Name
-    tbody  
-      - var i = 0
-      if lists.length > 0
+if lists.length > 0
+  table(id='listTable')
+      thead
+        tr 
+          th List Name
+      tbody  
+        - var i = 0
         each list in lists
           - i++
           tr(id=`row${i}`)
@@ -14,6 +14,6 @@ table(id='listTable')
                 class='setteings'
                 onClick=`listDelete(${list.id},this)`
               ) •••
-      else
-        p Create a new list to get started.
+else
+   p(class='empty_list') Create a new list to get started.
         

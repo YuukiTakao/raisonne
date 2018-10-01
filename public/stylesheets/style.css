@@ -47,6 +47,10 @@ body {
   width: 900px;
 }
 
+.empty_list {
+  margin: 150px 0 50px 70px;
+}
+
 input[type=checkbox] {
   transform: scale(1.3);
 }
