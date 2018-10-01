@@ -4,4 +4,4 @@ div(class='workspace_menu')
 
   each space in spaces
     div(class='menu_child')
-      a(href=`/spaces/${space.id}`) #{space.title}
+      a(href=`/spaces/${space.id}` class='space_link') #{space.title}

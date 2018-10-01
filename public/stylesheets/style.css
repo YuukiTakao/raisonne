@@ -3,24 +3,28 @@ a {
 }
 
 .back_button {
-	color: #c400e6;
-	font-size: 100%;
+  color: #c400e6;
+  font-size: 100%;
   font-style: italic;
-	font-weight: bold;
+  font-weight: bold;
   opacity: 0.5;
   text-decoration: back;
 }
 
 .back_button:hover {
-	color: #d876f0;
+  color: #d876f0;
   opacity: 1.0;
-  text-decoration: underline;
 }
 
 body {
   background-color: skyblue;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding: 50px;
+}
+
+button {
+    background:none;
+    border:0;
 }
 
 #close {
@@ -118,7 +122,7 @@ input.radius {
   color: #444444;
   font-size: 14px;
   height: 30px;
-  /* padding: 20px 0 0 20px; */
+  text-align: center;
   top: 0;
   vertical-align: middle;
   width: 270px;
@@ -161,23 +165,8 @@ input.radius {
   text-align: right;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-table th, table td {
-  border: dashed 1px gray;
-  height: 28px;
-}
-
-table tr td {
-  height: 15px;
-  margin: 5px;
-  padding: 5px;
-  width: 960px;
-}
-
 #open {
+  cursor: pointer;
   text-align: center;
 }
 
@@ -192,6 +181,10 @@ table tr td {
   display: inline;
   float: right;
   padding: 5px;
+}
+
+.space_link {
+  text-decoration: none;
 }
 
 .space_text {
@@ -220,6 +213,22 @@ table tr td {
 .square_btn:hover {
   color: white;
   background: #FF6699;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: dashed 1px gray;
+  height: 28px;
+}
+
+table tr td {
+  height: 15px;
+  margin: 5px;
+  padding: 5px;
+  width: 960px;
 }
 
 .width-30px {
