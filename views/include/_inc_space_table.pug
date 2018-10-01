@@ -7,4 +7,5 @@ div(class='workspace_menu')
       a(href=`/spaces/${space.id}` class='space_link') #{space.title}
       small(
         class='setteings'
+        onClick=`spaceDelete(${space.id}, this)`
       ) •••

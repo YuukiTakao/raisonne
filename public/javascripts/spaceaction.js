@@ -69,7 +69,7 @@ function spaceTitleUpdate(newTitle) {
 }
 
 
-function spaceDelete(spaceId, textBox) {
+function spaceDelete(spaceId) {
   const initOption = makeInitOption(
     {
       id: spaceId,
