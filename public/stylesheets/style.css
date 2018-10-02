@@ -55,6 +55,11 @@ button {
   margin: 150px 0 50px 70px;
 }
 
+h1 {
+  display: inline-block;
+  font-weight: normal;
+  margin:  5px 20px;
+}
 input[type=checkbox] {
   transform: scale(1.3);
 }
