@@ -15,5 +15,6 @@ if lists.length > 0
                 onClick=`listDelete(${list.id},this)`
               ) •••
 else
-   p(class='empty_list') Create a new list to get started.
+  table(id='listTable' style='display:none;')
+  p(class='empty_list') Create a new list to get started.
         
