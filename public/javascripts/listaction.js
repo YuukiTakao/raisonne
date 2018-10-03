@@ -38,7 +38,7 @@ function addListTableRow(newListId) {
     
   // Get table object.
   const targetTable = document.getElementById('listTable'); // 新しい行を追加
-  const newRowNo = targetTable.rows.length;
+  const newRowNo = targetTable.rows ? targetTable.rows.length : 0;
   var newRow = targetTable.insertRow(newRowNo);
   var cell1 = newRow.insertCell(-1);
   cell1.classList.add('width-30px');
