@@ -32,14 +32,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // rooting
+const indexRouter = require('./routes/index.js');
 const listRouter = require('./routes/lists.js');
 const spaceRouter = require('./routes/space.js');
 const taskRouter = require('./routes/tasks.js');
 const usersRouter = require('./routes/users.js');
 
 // mapping
-app.use('/spaces', spaceRouter);
+app.use('/', indexRouter);
 app.use('/lists', listRouter);
+app.use('/spaces', spaceRouter);
 app.use('/tasks', taskRouter);
 app.use('/users', usersRouter);
 
