@@ -100,6 +100,10 @@ input.radius {
   margin: 15px 0 15px 0;
 }
 
+.login_form {
+  text-align: center;
+}
+
 .main{
   background-color: whitesmoke;
   border-radius: 8px;
