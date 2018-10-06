@@ -44,6 +44,17 @@ app.use('/lists', listRouter);
 app.use('/spaces', spaceRouter);
 app.use('/tasks', taskRouter);
 app.use('/users', usersRouter);
+// 認証のためにユーザーを Google へリダイレクトし、認証が完了すると、
+// ユーザーを下記のURLにリダイレクトします。
+//     /auth/google/return
+app.get('/auth/google', passport.authenticate('google'));
+
+// Google は認証が完了すると、下記のURLにユーザーをリダイレクトさせます。
+// 一連のプロセスは、ログインが成功したことを検証することで認証の完了とし、
+// さもなければ認証失敗とみなされます。
+app.get('/auth/google/return', 
+  passport.authenticate('google', { successRedirect: '/',
+                                                          failureRedirect: '/login' }));
 
 
 // catch 404 and forward to error handler
