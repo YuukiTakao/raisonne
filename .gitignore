@@ -2,3 +2,4 @@ node_modules/
 log/
 directry_tree.txt
 .vscode
+package-lock.json
