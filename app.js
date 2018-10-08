@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var fs = require('fs');
-
+var session = require('express-session');
 var app = express();
 
 // logging
@@ -19,7 +19,6 @@ var FileStreamRotator = require('file-stream-rotator');
 //  date_format: "YYYY-MM-DD"
 //});
 //app.use(morgan('combined', {stream: accessLogStream}));
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,25 +36,72 @@ const listRouter = require('./routes/lists.js');
 const spaceRouter = require('./routes/space.js');
 const taskRouter = require('./routes/tasks.js');
 const usersRouter = require('./routes/users.js');
-
-// mapping
 app.use('/', indexRouter);
 app.use('/lists', listRouter);
 app.use('/spaces', spaceRouter);
 app.use('/tasks', taskRouter);
 app.use('/users', usersRouter);
-// 認証のためにユーザーを Google へリダイレクトし、認証が完了すると、
-// ユーザーを下記のURLにリダイレクトします。
-//     /auth/google/return
-app.get('/auth/google', passport.authenticate('google'));
 
-// Google は認証が完了すると、下記のURLにユーザーをリダイレクトさせます。
-// 一連のプロセスは、ログインが成功したことを検証することで認証の完了とし、
-// さもなければ認証失敗とみなされます。
-app.get('/auth/google/return', 
-  passport.authenticate('google', { successRedirect: '/',
-                                                          failureRedirect: '/login' }));
+const passport = require('passport');
+// passport が ユーザー情報をシリアライズすると呼び出されます
+passport.serializeUser(function (id, done) {
+  done(null, id);
+});
 
+// passport が ユーザー情報をデシリアライズすると呼び出されます
+passport.deserializeUser( (name, done) => {
+  const matchUser = models.users.findAll({where: {name: name,}});
+  matchUser.then( (result) => {
+    const userObjArray = JSON.parse(JSON.stringify(results, null, 2));
+    done(null, userObjArray[0].name);
+  });
+  matchUser.error((e) => {
+    done(e);
+  });
+});
+
+const  LocalStrategy = require('passport-local').Strategy;
+
+const models = require('./models');
+console.log('testest');
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    models.users.findAll(
+      {
+        where: {
+          name: username,
+          password: password,
+        }
+      }, function (err, user) {
+        console.log('startstart');
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!models.users.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      });
+        console.log(username);
+        return done(null, username);
+  }
+));
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// passport設定
+app.use(session({ secret: "some salt", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post('/login',
+    passport.authenticate('local'),
+    function(req, res){
+      res.redirect('/spaces/1');
+        // 認証成功するとここが実行される
+    }
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
