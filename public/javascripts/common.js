@@ -17,6 +17,8 @@ window.onload = function(){
   var modal = document.getElementById('modal');
   var mask = document.getElementById('mask');
 
+  if (!open) return false;
+
   open.addEventListener('click', function() {
     modal.className = '';
     mask.className = '';
