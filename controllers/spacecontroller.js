@@ -8,7 +8,7 @@ spaces.index = (req, res, next) => {
   models.spaces.findAll().then(spaceResults => {
     models.lists.findAll(
       {
-        where:{
+        where: {
           space_id: targetId,
         }
       }
