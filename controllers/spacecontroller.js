@@ -92,7 +92,7 @@ spaces.delete = (req, res, next) => {
     where:{
       id: targetId
     }
-  })
+  });
   delSpace.then((result) => {
     res.json({
       isSucceeded: true,
