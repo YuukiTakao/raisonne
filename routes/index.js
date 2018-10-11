@@ -7,6 +7,7 @@ const Authenticator = require('../config/passport/authenticator.js');
 
 router.get('/', indexcontroller.index);
 router.post('/login', Authenticator.isAuthenticated, function(req, res) {
+  return res.redirect(Authenticator.redirect.success);
   const user = req.user;
   res.render('user', {
     user: user
