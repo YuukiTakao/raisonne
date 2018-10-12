@@ -45,9 +45,11 @@ app.use('/users', usersRouter);
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const models = require('./models')
 /* passport */
-const Authenticator = require('./config/passport/authenticator.js');
-const connectFlash = require('connect-flash');
 // session config
 app.use(
   session({
@@ -57,14 +59,42 @@ app.use(
     saveUninitialized: false
   })
 );
-// For req.flash
-app.use(connectFlash());
-// Initialize passport
-Authenticator.initialize(app);
-Authenticator.setStrategy();
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy( (userID, password, done) => {
+  console.log('user data', userID, password);
+  models.users.authorize(userID, password)
+    .then(userIdInformation => {
+      console.log(userIdInformation);
+      // 認証に成功したらユーザ情報を返す
+      return done(null, userIdInformation);
+    })
+    .catch( err => {
+      console.log(err);
+      req.flash('login_error', err);
+      return done(null, false);
+    });
+}));
+
+app.post('/login',
+    passport.authenticate('local'),
+    (req, res) => {
+      console.log('next func start')
+      res.redirect(Authenticator.redirect.success);
+      const user = req.user;
+      res.render('user', {
+        user: user
+      });
+        // 認証成功するとここが実行される
+    }
+);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log('yeah');
   next(createError(404));
 });
 
