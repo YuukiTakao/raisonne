@@ -63,11 +63,36 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser((user, done) => {
+  console.log('serialize');
+  return done(null, user);
+});
+
+passport.deserializeUser((serializedUser, done) => {
+  console.log('desireialize: ',serializedUser);
+  models.users.findAll(
+    {
+      where: {
+        name: serializedUser.name,
+      }
+    })
+    .then(user => {
+      return done(null, {
+        user_id: user.id,
+        user_name: user.name,
+      });
+    })
+    .catch(() => {
+      console.log('Authentication failure');
+      return done(null, false);
+    });
+});
+
 passport.use(new LocalStrategy( (userID, password, done) => {
   console.log('user data', userID, password);
   models.users.authorize(userID, password)
     .then(userIdInformation => {
-      console.log(userIdInformation);
+      console.log('userIdInformation: ',userIdInformation);
       // 認証に成功したらユーザ情報を返す
       return done(null, userIdInformation);
     })
@@ -78,16 +103,26 @@ passport.use(new LocalStrategy( (userID, password, done) => {
     });
 }));
 
+class Authenticator {
+}
+
+Authenticator.redirect = {
+  success: '/spaces/1',
+  failure: '/uho',
+  permission: '/'
+};
+
 app.post('/login',
     passport.authenticate('local'),
     (req, res) => {
+      console.log(req.param)
       console.log('next func start')
+
       res.redirect(Authenticator.redirect.success);
       const user = req.user;
       res.render('user', {
         user: user
       });
-        // 認証成功するとここが実行される
     }
 );
 
