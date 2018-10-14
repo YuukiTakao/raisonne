@@ -98,7 +98,7 @@ passport.use(new LocalStrategy( (userID, password, done) => {
     })
     .catch( err => {
       console.log(err);
-      req.flash('login_error', err);
+      // req.flash('login_error', err);
       return done(null, false);
     });
 }));
