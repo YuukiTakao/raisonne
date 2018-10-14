@@ -11,5 +11,25 @@ module.exports = (sequelize, DataTypes) => {
   users.associate = function(models) {
     // associations can be defined here
   };
+  users.authorize = (userId, password) => {
+    return new Promise( (resolve, reject) => {
+      users.findAll(
+        {
+          where: {
+            name: userId,
+            password: password,
+          }
+        }).then( targetUser => {
+          console.log('targetUser: ',targetUser);
+          const userObj = JSON.parse(JSON.stringify(targetUser, null, 2));
+          console.log('user: ',userObj);
+          if (userObj.length > 0) {
+            resolve(userId, password);
+          } else {
+            reject();
+          }
+        });
+      });
+    };
   return users;
 };
