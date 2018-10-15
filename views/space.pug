@@ -2,13 +2,15 @@ extends layout
 
 block content
 
-  div(class='header')
-    small(
-      class='setteings'
-      onClick=`taskDelete(null,this)`
-    ) •••
-
   div(class='container')
+    div(class='header')
+      small(
+        class='setteings'
+      ) ◇
+      small(
+        class='setteings'
+      ) •••
+
     div(class='leftnavi')
       include ./include/_inc_space_table.pug
 
