@@ -3,7 +3,7 @@ a {
 }
 
 .back_button {
-  color: #c400e6;
+  color: rgba(99, 90, 81, 0.582);
   font-size: 100%;
   font-style: italic;
   font-weight: bold;
@@ -12,7 +12,7 @@ a {
 }
 
 .back_button:hover {
-  color: #d876f0;
+  color: #FF6699;
   opacity: 1.0;
 }
 
@@ -98,7 +98,7 @@ input.radius {
   border-style: None;
   background-color: rgba(0,0,0,0);
   font-size: 36px;
-  margin: 15px 0 15px 0;
+  margin: 15px 0;
   padding: 0 6px;
 }
 
@@ -203,7 +203,6 @@ input.radius {
   border: 1px solid #e5e5e5;
   border-radius: 4px;
   display: inline;
-  font-size: 18px;
   height: 35px;
   margin: 50px;
   padding: 0 6px;
