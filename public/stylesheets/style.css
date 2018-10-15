@@ -20,7 +20,7 @@ body {
   /* background-color: #002FA7; */
   background-color: skyblue;
   font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 50px;
+  padding: 10px;
 }
 
 button {
@@ -49,6 +49,7 @@ button {
 
 .container {
   height: 500px;
+  margin: 0 auto;
   width: 900px;
 }
 
@@ -56,11 +57,20 @@ button {
   margin: 150px 0 50px 70px;
 }
 
+.header {
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  width: 900px;
+
+}
+
 h1 {
   display: inline-block;
   font-weight: normal;
   margin:  5px 20px;
 }
+
 input[type=checkbox] {
   transform: scale(1.3);
 }

@@ -3,11 +3,14 @@ extends layout
 block content
 
   div(class='header')
+    small(
+      class='setteings'
+      onClick=`taskDelete(null,this)`
+    ) •••
 
   div(class='container')
     div(class='leftnavi')
       include ./include/_inc_space_table.pug
-
 
     div(class='main')
       h1=title
@@ -31,7 +34,7 @@ block content
           id='space_text'
           class='space_text'
           value=''
-          placeholder='New Workspace name'
+          placeholder='New workspace name'
           onKeyDown='createNewSpace(this)'
         )
         p(id='close') ×
