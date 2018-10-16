@@ -126,7 +126,7 @@ app.post('/login',
     }
 );
 
-router.get("/logout", (req, res) => {
+app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
