@@ -59,3 +59,30 @@ function elementFocused(idName) {
     }
   }
 }
+
+function callLogout() {
+
+  const initOption = makeInitOption(
+    {
+      id: taskId,
+      list_id: listId,
+      target_order_id: orderId
+    }
+  );
+  url = `${location.protocol}//${location.host}/tasks/delete/${taskId}`;
+
+  console.log(initOption);
+  return fetch(url, initOption)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.log('delete error');
+      }
+    })
+    .then(resJson => {
+      console.log(resJson);
+      targetTr.parentNode.removeChild(targetTr);
+    });
+}
+
