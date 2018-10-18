@@ -6,13 +6,13 @@ const indexcontroller = require('../controllers/indexcontroller');
 const Authenticator = require('../config/passport/authenticator.js');
 
 router.get('/', indexcontroller.index);
-router.post('/login', Authenticator.isAuthenticated, function(req, res) {
-  return res.redirect(Authenticator.redirect.success);
-  const user = req.user;
-  res.render('user', {
-    user: user
-  });
-});
+// router.post('/login', Authenticator.isAuthenticated, function(req, res) {
+//   return res.redirect(Authenticator.redirect.success);
+//   const user = req.user;
+//   res.render('user', {
+//     user: user
+//   });
+// });
 
 // router.get('/logout', indexcontroller.logout());
 
