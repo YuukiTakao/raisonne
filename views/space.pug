@@ -24,20 +24,7 @@ block content
         class='square_btn'
       )
 
-      section#top
-      .content.top
 
       include ./include/_inc_list_table.pug
 
-      div(id='mask' class='hidden')
-
-      div(id='modal' class='hidden')
-        input(
-          type='text'
-          id='space_text'
-          class='space_text'
-          value=''
-          placeholder='New workspace name'
-          onKeyDown='createNewSpace(this)'
-        )
-        p(id='close') ×
+      include ./include/_inc_modal_text.pug
