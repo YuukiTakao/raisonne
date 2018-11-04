@@ -1,11 +1,12 @@
-var createError = require('http-errors');
 var express = require('express');
+var app = express();
+var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var fs = require('fs');
 var session = require('express-session');
-var app = express();
+var favicon = require('serve-favicon');
 
 // logging
 var FileStreamRotator = require('file-stream-rotator');
@@ -25,6 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static('public'));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
